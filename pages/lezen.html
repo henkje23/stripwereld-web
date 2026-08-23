@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Strip lezen - StripWereld</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<a href="../index.html" class="logo">
+📚 StripWereld
+</a>
+
+
+<nav>
+
+<a href="../index.html">Home</a>
+
+<a href="alle-strips.html">Alle strips</a>
+
+<a href="maken.html">Maken</a>
+
+<a href="zoeken.html">Zoeken</a>
+
+</nav>
+
+</header>
+
+
+
+<main>
+
+
+<a href="alle-strips.html">
+← Terug naar alle strips
+</a>
+
+
+
+<h1 id="strip-titel">
+Strip laden...
+</h1>
+
+
+<p id="maker-info"></p>
+
+
+<section>
+
+<button
+id="like-knop"
+type="button"
+disabled
+>
+
+🤍 <span id="like-aantal">0</span> likes
+
+</button>
+
+
+<p id="like-status"></p>
+
+</section>
+
+
+
+<section>
+
+<img
+id="strip-afbeelding"
+src=""
+alt="Strippagina"
+>
+
+
+<p id="pagina-info"></p>
+
+
+<button
+id="vorige-knop"
+type="button"
+disabled
+>
+← Vorige
+</button>
+
+
+<button
+id="volgende-knop"
+type="button"
+disabled
+>
+Volgende →
+</button>
+
+</section>
+
+
+
+
+<section>
+
+<h2>
+💬 Reacties
+</h2>
+
+
+<div id="reacties">
+
+Laden...
+
+</div>
+
+
+
+<form id="reactie-form">
+
+
+<textarea
+id="reactie-tekst"
+rows="4"
+maxlength="500"
+placeholder="Schrijf een reactie..."
+required
+></textarea>
+
+
+<br>
+
+
+<button
+type="submit"
+>
+Reactie plaatsen
+</button>
+
+
+</form>
+
+
+<p id="reactie-status"></p>
+
+
+</section>
+
+
+
+</main>
+
+
+
+<footer>
+
+© 2026 StripWereld
+
+</footer>
+
+
+
+<script type="module" src="../js/lezen.js"></script>
+
+
+</body>
+
+</html>

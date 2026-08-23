@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Strip maken - StripWereld</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<a href="../index.html" class="logo">
+📚 StripWereld
+</a>
+
+
+<nav>
+
+<a href="../index.html">Home</a>
+
+<a href="alle-strips.html">Alle strips</a>
+
+<a href="maken.html">Maken</a>
+
+<a href="zoeken.html">Zoeken</a>
+
+</nav>
+
+</header>
+
+
+
+<main>
+
+
+<h1>
+➕ Strip maken
+</h1>
+
+
+<form id="strip-form">
+
+
+<label for="titel">
+Titel van je strip
+</label>
+
+
+<input
+type="text"
+id="titel"
+maxlength="100"
+placeholder="Bijvoorbeeld: De avonturen van Henk"
+required
+>
+
+
+
+<label for="cover">
+Cover kiezen
+</label>
+
+
+<input
+type="file"
+id="cover"
+accept="image/*"
+required
+>
+
+
+<div id="cover-preview"></div>
+
+
+
+<label for="pagina-bestanden">
+Strippagina's kiezen
+</label>
+
+
+<input
+type="file"
+id="pagina-bestanden"
+accept="image/*"
+multiple
+required
+>
+
+
+<p>
+Kies de pagina's in de gewenste volgorde.
+</p>
+
+
+<div id="pagina-previews"></div>
+
+
+
+<button
+type="submit"
+class="knop"
+id="publiceer-knop"
+>
+
+💾 Strip publiceren
+
+</button>
+
+
+</form>
+
+
+
+<p id="maak-status"></p>
+
+
+</main>
+
+
+
+<footer>
+
+© 2026 StripWereld
+
+</footer>
+
+
+
+<script
+type="module"
+src="../js/maken.js">
+</script>
+
+
+</body>
+
+</html>
