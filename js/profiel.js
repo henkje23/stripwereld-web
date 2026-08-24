@@ -1,6 +1,4 @@
-import {
-    auth
-} from "./firebase-config.js";
+import { auth } from "./firebase-config.js";
 
 import {
     onAuthStateChanged,
@@ -29,7 +27,6 @@ const uitloggenKnop =
 const vertalingen = {
 
     nl: {
-
         home: "Home",
         alleStrips: "Alle strips",
         zoeken: "Zoeken",
@@ -45,50 +42,39 @@ const vertalingen = {
 
         account: "👤 Account",
 
-        uitloggen:
-            "🚪 Uitloggen",
+        uitloggen: "🚪 Uitloggen",
 
-        appTitel:
-            "📱 StripWereld-app",
+        appTitel: "📱 StripWereld-app",
 
         appUitleg:
             "Download de nieuwste versie van de StripWereld-app.",
 
-        download:
-            "📥 Download app (APK)",
+        download: "📥 Download app (APK)",
 
-        contactTitel:
-            "💬 Contact",
+        contactTitel: "💬 Contact",
 
         contactUitleg:
             "Heb je een vraag, idee of iets anders? Neem contact met ons op via WhatsApp.",
 
-        vraag:
-            "❓ Ik heb een vraag",
+        vraag: "❓ Ik heb een vraag",
 
-        idee:
-            "💡 Ik heb een idee",
+        idee: "💡 Ik heb een idee",
 
-        anders:
-            "📝 Anders",
+        anders: "📝 Anders",
 
-        taalTitel:
-            "🌍 Taal",
+        taalTitel: "🌍 Taal",
 
         taalUitleg:
             "Kies de taal van de StripWereld-interface. De strips zelf worden niet vertaald.",
 
-        footer:
-            "© 2026 StripWereld",
+        footer: "© 2026 StripWereld",
 
         accountLaden:
             "Accountgegevens laden..."
-
     },
 
 
     en: {
-
         home: "Home",
         alleStrips: "All comics",
         zoeken: "Search",
@@ -104,50 +90,39 @@ const vertalingen = {
 
         account: "👤 Account",
 
-        uitloggen:
-            "🚪 Log out",
+        uitloggen: "🚪 Log out",
 
-        appTitel:
-            "📱 StripWereld app",
+        appTitel: "📱 StripWereld app",
 
         appUitleg:
             "Download the latest version of the StripWereld app.",
 
-        download:
-            "📥 Download app (APK)",
+        download: "📥 Download app (APK)",
 
-        contactTitel:
-            "💬 Contact",
+        contactTitel: "💬 Contact",
 
         contactUitleg:
             "Do you have a question, idea or something else? Contact us through WhatsApp.",
 
-        vraag:
-            "❓ I have a question",
+        vraag: "❓ I have a question",
 
-        idee:
-            "💡 I have an idea",
+        idee: "💡 I have an idea",
 
-        anders:
-            "📝 Other",
+        anders: "📝 Other",
 
-        taalTitel:
-            "🌍 Language",
+        taalTitel: "🌍 Language",
 
         taalUitleg:
             "Choose the language of the StripWereld interface. The comics themselves are not translated.",
 
-        footer:
-            "© 2026 StripWereld",
+        footer: "© 2026 StripWereld",
 
         accountLaden:
             "Loading account information..."
-
     },
 
 
     fr: {
-
         home: "Accueil",
         alleStrips: "Toutes les BD",
         zoeken: "Rechercher",
@@ -163,8 +138,7 @@ const vertalingen = {
 
         account: "👤 Compte",
 
-        uitloggen:
-            "🚪 Se déconnecter",
+        uitloggen: "🚪 Se déconnecter",
 
         appTitel:
             "📱 Application StripWereld",
@@ -175,33 +149,50 @@ const vertalingen = {
         download:
             "📥 Télécharger l'application (APK)",
 
-        contactTitel:
-            "💬 Contact",
+        contactTitel: "💬 Contact",
 
         contactUitleg:
             "Vous avez une question, une idée ou autre chose ? Contactez-nous via WhatsApp.",
 
-        vraag:
-            "❓ J'ai une question",
+        vraag: "❓ J'ai une question",
 
-        idee:
-            "💡 J'ai une idée",
+        idee: "💡 J'ai une idée",
 
-        anders:
-            "📝 Autre",
+        anders: "📝 Autre",
 
-        taalTitel:
-            "🌍 Langue",
+        taalTitel: "🌍 Langue",
 
         taalUitleg:
             "Choisissez la langue de l'interface StripWereld. Les bandes dessinées elles-mêmes ne sont pas traduites.",
 
-        footer:
-            "© 2026 StripWereld",
+        footer: "© 2026 StripWereld",
 
         accountLaden:
             "Chargement des informations du compte..."
+    }
 
+};
+
+
+// ========================================
+// THEMA'S PER TAAL
+// ========================================
+
+const taalThemas = {
+
+    nl: {
+        primaireKleur: "#4A90E2",
+        primaireHover: "#397FCF"
+    },
+
+    en: {
+        primaireKleur: "#7B61C9",
+        primaireHover: "#684DB4"
+    },
+
+    fr: {
+        primaireKleur: "#E76F51",
+        primaireHover: "#D85C3D"
     }
 
 };
@@ -217,24 +208,46 @@ function zetTaal(taal) {
         taal = "nl";
     }
 
-
     const teksten =
         vertalingen[taal];
 
 
     // Taal bewaren
+
     localStorage.setItem(
         "stripwereld-taal",
         taal
     );
 
 
-    // HTML-taal aanpassen
+    // HTML taal aanpassen
+
     document.documentElement.lang =
         taal;
 
 
-    // Kleurstijl aanpassen
+    // ========================================
+    // KLEUREN AANPASSEN
+    // ========================================
+
+    const thema =
+        taalThemas[taal];
+
+
+    if (
+        thema &&
+        window.bewaarThema
+    ) {
+
+        window.bewaarThema(
+            thema
+        );
+
+    }
+
+
+    // Oude taalklassen verwijderen
+
     document.body.classList.remove(
         "taal-nl",
         "taal-en",
@@ -242,12 +255,17 @@ function zetTaal(taal) {
     );
 
 
+    // Nieuwe taalklasse toevoegen
+
     document.body.classList.add(
         `taal-${taal}`
     );
 
 
-    // Alle teksten met data-i18n vervangen
+    // ========================================
+    // TEKSTEN VERTALEN
+    // ========================================
+
     document
         .querySelectorAll("[data-i18n]")
         .forEach(
@@ -257,7 +275,10 @@ function zetTaal(taal) {
                     element.dataset.i18n;
 
 
-                if (teksten[sleutel]) {
+                if (
+                    teksten[sleutel] !==
+                    undefined
+                ) {
 
                     element.textContent =
                         teksten[sleutel];
@@ -268,7 +289,10 @@ function zetTaal(taal) {
         );
 
 
-    // Actieve taal markeren
+    // ========================================
+    // ACTIEVE TAAL
+    // ========================================
+
     document
         .querySelectorAll(".taal-knop")
         .forEach(
@@ -292,6 +316,7 @@ function zetTaal(taal) {
 
             }
         );
+
 }
 
 
@@ -336,7 +361,6 @@ onAuthStateChanged(
                 "Niet ingelogd.";
 
             return;
-
         }
 
 
@@ -370,9 +394,10 @@ uitloggenKnop.addEventListener(
             await signOut(auth);
 
 
-            // NA UITLOGGEN NAAR LOGIN
+            // NA UITLOGGEN NAAR INLOGGEN
+
             window.location.href =
-                "login.html";
+                "inloggen.html";
 
 
         } catch (fout) {
