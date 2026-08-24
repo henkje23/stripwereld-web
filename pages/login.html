@@ -8,74 +8,97 @@
     <title>Inloggen - StripWereld</title>
 
     <link rel="stylesheet" href="../css/style.css">
-</head>
 
     <script src="../theme.js"></script>
+</head>
 
 <body>
 
 <header>
+
     <a href="../index.html" class="logo">
-    <img src="../logo.jpeg" alt="StripWereld" class="logo-afbeelding">
-</a>
+        <img
+            src="../logo.jpeg"
+            alt="StripWereld"
+            class="logo-afbeelding"
+        >
+    </a>
+
 </header>
 
 <main>
 
-    <h1>🔐 Inloggen</h1>
+    <section class="profiel-kaart">
 
-    <form id="login-form">
+        <h1>🔐 Inloggen</h1>
 
-        <input
-            type="email"
-            id="email"
-            placeholder="E-mailadres"
-            required
-        >
+        <form id="login-form">
 
-        <input
-            type="password"
-            id="wachtwoord"
-            placeholder="Wachtwoord"
-            required
-        >
+            <input
+                type="email"
+                id="email"
+                placeholder="E-mailadres"
+                required
+            >
+
+            <input
+                type="password"
+                id="wachtwoord"
+                placeholder="Wachtwoord"
+                required
+            >
+
+            <button
+                type="submit"
+                class="knop"
+            >
+                Inloggen
+            </button>
+
+        </form>
+
+        <p id="login-status"></p>
+
+        <hr>
 
         <button
-            type="submit"
+            type="button"
+            id="account-maken"
             class="knop"
         >
-            Inloggen
+            ➕ Account aanmaken
         </button>
 
-    </form>
+        <button
+            type="button"
+            id="wachtwoord-vergeten"
+            class="knop knop-secundair"
+        >
+            🔑 Wachtwoord vergeten
+        </button>
 
-    <p id="login-status"></p>
-
-    <hr>
-
-    <button
-        type="button"
-        id="account-maken"
-        class="knop"
-    >
-        ➕ Account aanmaken
-    </button>
-
-    <button
-        type="button"
-        id="wachtwoord-vergeten"
-        class="knop"
-    >
-        🔑 Wachtwoord vergeten
-    </button>
+    </section>
 
 </main>
 
 <footer>
-    © 2026 StripWereld
+
+    <strong>📚 StripWereld</strong>
+
+    <p>
+        Lees • Ontdek • Geniet
+    </p>
+
+    <small>
+        © 2026 StripWereld
+    </small>
+
 </footer>
 
-<script type="module" src="../js/login.js"></script>
+<script
+    type="module"
+    src="../js/login.js"
+></script>
 
 </body>
 </html>
