@@ -2,143 +2,94 @@
     box-sizing: border-box;
 }
 
-
-/* =================================
-   THEMA
-   ================================= */
-
-:root {
-    --primaire-kleur: #4A90E2;
-    --primaire-hover: #397FCF;
-
-    --achtergrond: #F4F7FB;
-    --kaart: #FFFFFF;
-
-    --tekst: #252A30;
-    --subtekst: #68727D;
-
-    --header: #252A30;
-    --header-hover: #3A424B;
-
-    --rand: #D5E2EF;
-}
-
-
-/* =================================
-   BODY
-   ================================= */
-
 body {
     margin: 0;
-
     font-family: Arial, sans-serif;
-
-    background: var(--achtergrond);
-
-    color: var(--tekst);
-
+    background: var(--achtergrond, #F4F7FB);
+    color: var(--tekst, #252A30);
     transition:
-        background-color 0.35s ease,
-        color 0.35s ease;
+        background 0.4s ease,
+        color 0.4s ease;
 }
 
 
-/* =================================
+/* ============================================
    HEADER
-   ================================= */
+============================================ */
 
 header {
-    background: var(--header);
-
+    background: var(--header, #252A30);
     color: white;
 
     min-height: 76px;
-
     padding: 10px 28px;
 
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 
-    box-shadow:
-        0 3px 15px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
 
     transition:
-        background-color 0.35s ease;
+        background 0.4s ease;
 }
-
 
 .logo {
     display: flex;
-
     align-items: center;
 }
-
 
 .logo-afbeelding {
     height: 58px;
-
     width: auto;
-
     display: block;
-
     border-radius: 8px;
 }
 
-
 nav {
     display: flex;
-
     align-items: center;
-
     gap: 8px;
 }
 
-
 nav a {
     color: white;
-
     text-decoration: none;
 
     padding: 10px 14px;
-
     border-radius: 9px;
 
-    transition: 0.2s;
+    transition:
+        background 0.25s ease,
+        transform 0.2s ease;
 }
-
 
 nav a:hover {
-    background: var(--header-hover);
+    background: var(--header-hover, #3A424B);
+    transform: translateY(-1px);
 }
 
 
-/* =================================
+/* ============================================
    MAIN
-   ================================= */
+============================================ */
 
 main {
     max-width: 1200px;
-
     margin: auto;
-
     padding: 35px 22px 60px;
 }
 
 
-/* =================================
+/* ============================================
    HERO
-   ================================= */
+============================================ */
 
 .hero {
     min-height: 390px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     text-align: center;
@@ -150,13 +101,10 @@ main {
             135deg,
             color-mix(
                 in srgb,
-                var(--primaire-kleur) 28%,
+                var(--primaire-kleur, #4A90E2) 25%,
                 white
-            ) 0%,
-
-            white 48%,
-
-            #FFE6A7 100%
+            ),
+            var(--kaart, #FFFFFF)
         );
 
     box-shadow:
@@ -165,14 +113,13 @@ main {
     padding: 55px 25px;
 
     transition:
-        background 0.5s ease;
+        background 0.5s ease,
+        box-shadow 0.4s ease;
 }
-
 
 .hero-tekst {
     max-width: 700px;
 }
-
 
 .badge {
     display: inline-block;
@@ -180,43 +127,42 @@ main {
     background:
         color-mix(
             in srgb,
-            var(--primaire-kleur) 12%,
+            var(--primaire-kleur, #4A90E2) 15%,
             white
         );
 
-    color: var(--primaire-kleur);
+    color: var(--primaire-kleur, #4A90E2);
 
     padding: 8px 14px;
 
     border-radius: 50px;
 
     font-size: 13px;
-
     font-weight: bold;
-}
 
+    transition:
+        background 0.4s ease,
+        color 0.4s ease;
+}
 
 .hero h1 {
     font-size: clamp(38px, 6vw, 64px);
 
     margin: 18px 0 12px;
 
-    color: var(--tekst);
+    color: var(--tekst, #252A30);
 }
-
 
 .hero p {
     font-size: 19px;
 
-    color: var(--subtekst);
+    color: var(--subtekst, #68727D);
 
     line-height: 1.6;
 }
 
-
 .hero-knoppen {
     display: flex;
-
     justify-content: center;
 
     gap: 12px;
@@ -227,14 +173,14 @@ main {
 }
 
 
-/* =================================
+/* ============================================
    KNOPPEN
-   ================================= */
+============================================ */
 
 .knop {
     display: inline-block;
 
-    background: var(--primaire-kleur);
+    background: var(--primaire-kleur, #4A90E2);
 
     color: white;
 
@@ -246,60 +192,62 @@ main {
 
     font-weight: bold;
 
-    transition:
-        0.2s,
-        background-color 0.35s ease;
-}
+    border: none;
 
+    cursor: pointer;
+
+    transition:
+        background 0.35s ease,
+        transform 0.2s ease,
+        box-shadow 0.25s ease;
+}
 
 .knop:hover {
     transform: translateY(-2px);
 
-    background: var(--primaire-hover);
+    background: var(--primaire-hover, #397FCF);
 
     box-shadow:
         0 6px 15px
         color-mix(
             in srgb,
-            var(--primaire-kleur) 25%,
+            var(--primaire-kleur, #4A90E2) 25%,
             transparent
         );
 }
 
-
 .knop-secundair {
-    background: white;
+    background: var(--kaart, #FFFFFF);
 
-    color: var(--tekst);
+    color: var(--tekst, #252A30);
 
-    border: 1px solid var(--rand);
+    border: 1px solid var(--rand, #D5E2EF);
 }
-
 
 .knop-secundair:hover {
     background:
         color-mix(
             in srgb,
-            var(--primaire-kleur) 7%,
-            white
+            var(--primaire-kleur, #4A90E2) 8%,
+            var(--kaart, #FFFFFF)
         );
+
+    color: var(--primaire-kleur, #4A90E2);
 }
 
 
-/* =================================
+/* ============================================
    POPULAIR
-   ================================= */
+============================================ */
 
 .populair {
     margin-top: 55px;
 }
 
-
 .sectie-kop {
     display: flex;
 
     justify-content: space-between;
-
     align-items: end;
 
     gap: 20px;
@@ -307,9 +255,8 @@ main {
     margin-bottom: 22px;
 }
 
-
 .klein-label {
-    color: var(--primaire-kleur);
+    color: var(--primaire-kleur, #4A90E2);
 
     font-size: 13px;
 
@@ -318,50 +265,46 @@ main {
     letter-spacing: 1.5px;
 }
 
-
 .sectie-kop h2 {
     font-size: 34px;
 
     margin: 5px 0;
 
-    color: var(--tekst);
+    color: var(--tekst, #252A30);
 }
 
-
 .sectie-kop p {
-    color: var(--subtekst);
+    color: var(--subtekst, #68727D);
 
     margin: 0;
 }
 
-
 .alles-link {
-    color: var(--primaire-kleur);
+    color: var(--primaire-kleur, #4A90E2);
 
     text-decoration: none;
 
     font-weight: bold;
-}
 
+    transition: color 0.3s ease;
+}
 
 .alles-link:hover {
-    color: var(--primaire-hover);
+    color: var(--primaire-hover, #397FCF);
 }
 
 
-/* =================================
+/* ============================================
    POPULAIRE KAARTEN
-   ================================= */
+============================================ */
 
 .populaire-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 22px;
 }
-
 
 .populaire-kaart {
     position: relative;
@@ -370,7 +313,7 @@ main {
 
     gap: 22px;
 
-    background: var(--kaart);
+    background: var(--kaart, #FFFFFF);
 
     padding: 18px;
 
@@ -380,30 +323,26 @@ main {
         0 8px 28px rgba(37, 42, 48, 0.07);
 
     transition:
-        0.2s,
-        background-color 0.35s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.4s ease;
 }
-
 
 .populaire-kaart:hover {
     transform: translateY(-4px);
 
     box-shadow:
-        0 14px 35px
-        rgba(37, 42, 48, 0.12);
+        0 14px 35px rgba(37, 42, 48, 0.12);
 }
-
 
 .populaire-cover {
     width: 190px;
-
     height: 190px;
 
     object-fit: cover;
 
     border-radius: 15px;
 }
-
 
 .populaire-info {
     display: flex;
@@ -413,37 +352,29 @@ main {
     justify-content: center;
 }
 
-
 .populaire-info h3 {
     font-size: 25px;
 
     margin: 8px 0;
 
-    color: var(--tekst);
+    color: var(--tekst, #252A30);
 }
 
-
 .populair-label {
-    color: #F08A24;
+    color: var(--primaire-kleur, #4A90E2);
 
     font-size: 13px;
 
     font-weight: bold;
 }
 
-
-/* =================================
-   RANG NUMMER
-   ================================= */
-
 .populair-nummer {
     position: absolute;
 
     top: 13px;
-
     left: 13px;
 
-    background: var(--primaire-kleur);
+    background: var(--primaire-kleur, #4A90E2);
 
     color: white;
 
@@ -454,16 +385,19 @@ main {
     font-weight: bold;
 
     z-index: 2;
+
+    transition:
+        background 0.4s ease;
 }
 
 
-/* =================================
+/* ============================================
    LADEN
-   ================================= */
+============================================ */
 
 .laden-kaart,
 .geen-strips {
-    background: var(--kaart);
+    background: var(--kaart, #FFFFFF);
 
     border-radius: 18px;
 
@@ -471,20 +405,23 @@ main {
 
     text-align: center;
 
-    transition:
-        background-color 0.35s ease;
+    color: var(--tekst, #252A30);
 }
-
 
 .spinner {
     width: 30px;
-
     height: 30px;
 
-    border: 4px solid var(--rand);
+    border:
+        4px solid
+        color-mix(
+            in srgb,
+            var(--primaire-kleur, #4A90E2) 20%,
+            white
+        );
 
     border-top-color:
-        var(--primaire-kleur);
+        var(--primaire-kleur, #4A90E2);
 
     border-radius: 50%;
 
@@ -494,23 +431,19 @@ main {
     margin: auto;
 }
 
-
 @keyframes draaien {
-
     to {
         transform: rotate(360deg);
     }
-
 }
 
 
-/* =================================
+/* ============================================
    FORMULIEREN
-   ================================= */
+============================================ */
 
 input,
-textarea,
-select {
+textarea {
     width: 100%;
 
     padding: 12px;
@@ -519,43 +452,43 @@ select {
 
     border-radius: 8px;
 
-    border: 1px solid var(--rand);
+    border:
+        1px solid
+        var(--rand, #D5E2EF);
 
-    background: var(--kaart);
+    background: var(--kaart, #FFFFFF);
 
-    color: var(--tekst);
+    color: var(--tekst, #252A30);
 
     transition:
-        background-color 0.35s ease,
-        color 0.35s ease,
-        border-color 0.35s ease;
+        border 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.4s ease;
 }
 
-
 input:focus,
-textarea:focus,
-select:focus {
+textarea:focus {
     outline: none;
 
     border-color:
-        var(--primaire-kleur);
+        var(--primaire-kleur, #4A90E2);
 
     box-shadow:
         0 0 0 3px
         color-mix(
             in srgb,
-            var(--primaire-kleur) 12%,
+            var(--primaire-kleur, #4A90E2) 12%,
             transparent
         );
 }
 
 
-/* =================================
+/* ============================================
    STRIPS
-   ================================= */
+============================================ */
 
 .strip-kaart {
-    background: var(--kaart);
+    background: var(--kaart, #FFFFFF);
 
     padding: 20px;
 
@@ -564,13 +497,14 @@ select:focus {
     margin: 15px 0;
 
     box-shadow:
-        0 5px 20px
-        rgba(37, 42, 48, 0.05);
+        0 5px 20px rgba(37, 42, 48, 0.05);
+
+    color: var(--tekst, #252A30);
 
     transition:
-        background-color 0.35s ease;
+        background 0.4s ease,
+        color 0.4s ease;
 }
-
 
 .strip-kaart img {
     max-width: 250px;
@@ -578,15 +512,71 @@ select:focus {
     border-radius: 12px;
 }
 
-
 img {
     max-width: 100%;
 }
 
 
-/* =================================
+/* ============================================
+   PROFIEL
+============================================ */
+
+.profiel-kaart {
+    background: var(--kaart, #FFFFFF);
+
+    color: var(--tekst, #252A30);
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    margin: 18px 0;
+
+    box-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.07);
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.profiel-kaart h3 {
+    margin-top: 0;
+
+    font-size: 22px;
+
+    color: var(--tekst, #252A30);
+}
+
+.profiel-kaart p {
+    color: var(--subtekst, #68727D);
+
+    line-height: 1.6;
+}
+
+.contact-knoppen,
+.taal-knoppen {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-top: 18px;
+}
+
+.taal-knop.actief {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ============================================
    FOOTER
-   ================================= */
+============================================ */
 
 footer {
     margin-top: 40px;
@@ -595,23 +585,22 @@ footer {
 
     text-align: center;
 
-    background: var(--header);
+    background: var(--header, #252A30);
 
     color: white;
 
     transition:
-        background-color 0.35s ease;
+        background 0.4s ease;
 }
-
 
 footer p {
     color: #B9C2CB;
 }
 
 
-/* =================================
+/* ============================================
    MOBIEL
-   ================================= */
+============================================ */
 
 @media (max-width: 750px) {
 
@@ -623,28 +612,23 @@ footer p {
         gap: 10px;
     }
 
-
     nav {
         flex-wrap: wrap;
 
         justify-content: center;
     }
 
-
     .logo-afbeelding {
         height: 50px;
     }
-
 
     .populaire-grid {
         grid-template-columns: 1fr;
     }
 
-
     .populaire-kaart {
         flex-direction: column;
     }
-
 
     .populaire-cover {
         width: 100%;
@@ -652,16 +636,25 @@ footer p {
         height: 230px;
     }
 
-
     .sectie-kop {
         align-items: flex-start;
 
         flex-direction: column;
     }
 
-
     .hero {
         min-height: 330px;
     }
 
+    .contact-knoppen,
+    .taal-knoppen {
+        flex-direction: column;
+    }
+
+    .contact-knoppen .knop,
+    .taal-knoppen .knop {
+        width: 100%;
+
+        text-align: center;
+    }
 }
