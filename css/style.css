@@ -2,172 +2,93 @@
     box-sizing: border-box;
 }
 
-
 body {
-
     margin: 0;
-
     font-family: Arial, sans-serif;
-
     background: #f4f4f4;
-
     color: #222;
-
 }
-
-
 
 header {
-
     background: #111;
-
     color: white;
-
-    padding: 15px 25px;
-
+    padding: 10px 25px;
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
 }
-
-
 
 .logo {
-
-    color: white;
-
+    display: flex;
+    align-items: center;
     text-decoration: none;
-
-    font-size: 26px;
-
-    font-weight: bold;
-
 }
 
-
+.logo-afbeelding {
+    height: 55px;
+    width: auto;
+    display: block;
+}
 
 nav a {
-
     color: white;
-
     text-decoration: none;
-
     margin-left: 15px;
-
 }
-
-
 
 main {
-
     padding: 25px;
-
 }
-
-
 
 .hero {
-
     background: white;
-
     padding: 40px;
-
     border-radius: 15px;
-
     text-align: center;
-
 }
-
-
 
 .knop {
-
     display: inline-block;
-
     background: #111;
-
     color: white;
-
     padding: 12px 20px;
-
     border-radius: 10px;
-
     text-decoration: none;
-
 }
-
-
 
 button {
-
     cursor: pointer;
-
 }
-
-
 
 input,
 textarea {
-
     width: 100%;
-
     padding: 12px;
-
     margin: 8px 0;
-
     border-radius: 8px;
-
     border: 1px solid #ccc;
-
 }
-
-
 
 .strip-kaart {
-
     background: white;
-
     padding: 15px;
-
     border-radius: 15px;
-
     margin: 15px 0;
-
 }
-
-
 
 .strip-kaart img {
-
     max-width: 250px;
-
     border-radius: 10px;
-
 }
-
-
 
 img {
-
     max-width: 100%;
-
 }
 
-
-
 footer {
-
     margin-top: 40px;
-
     padding: 20px;
-
     text-align: center;
-
     background: #111;
-
     color: white;
-
 }
