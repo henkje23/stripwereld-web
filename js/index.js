@@ -29,88 +29,97 @@ async function laadPopulaireStrips() {
 
         const strips = Object.entries(snapshot.val());
 
-        const stripsMetLikes = strips.map(([id, strip]) => {
+        const stripsMetLikes = await Promise.all(
 
-            const likesAantal =
-                strip.likes
-                    ? Object.keys(strip.likes).length
-                    : 0;
+            strips.map(
+                async ([id, strip]) => {
 
-            console.log(
-                `${strip.titel || "Zonder titel"}: ${likesAantal} likes`
-            );
+                    const likesSnapshot = await get(
+                        ref(database, `strips/${id}/likes`)
+                    );
 
-            return {
-                id: id,
-                ...strip,
-                likesAantal: likesAantal
-            };
+                    const likesAantal =
+                        likesSnapshot.exists()
+                            ? likesSnapshot.size
+                            : 0;
 
-        });
+                    console.log(
+                        `${strip.titel || "Zonder titel"}: ${likesAantal} likes`
+                    );
 
-        // Meeste likes eerst
-        stripsMetLikes.sort(
-            (a, b) => b.likesAantal - a.likesAantal
+                    return {
+                        id,
+                        ...strip,
+                        likesAantal
+                    };
+                }
+            )
         );
 
-        // Alleen de 2 populairste
         const populaireStrips =
-            stripsMetLikes.slice(0, 2);
+            stripsMetLikes
+                .sort(
+                    (a, b) =>
+                        b.likesAantal - a.likesAantal
+                )
+                .slice(0, 2);
 
         lijst.innerHTML = "";
 
-        populaireStrips.forEach((strip, index) => {
+        populaireStrips.forEach(
+            (strip, index) => {
 
-            const kaart =
-                document.createElement("article");
+                const kaart =
+                    document.createElement("article");
 
-            kaart.className = "populaire-kaart";
+                kaart.className =
+                    "populaire-kaart";
 
-            kaart.innerHTML = `
+                kaart.innerHTML = `
 
-                <div class="populair-nummer">
-                    #${index + 1}
-                </div>
+                    <div class="populair-nummer">
+                        #${index + 1}
+                    </div>
 
-                <img
-                    src="${strip.cover || ""}"
-                    alt="Cover van ${strip.titel || "strip"}"
-                    class="populaire-cover"
-                >
-
-                <div class="populaire-info">
-
-                    <span class="populair-label">
-                        🔥 Populair
-                    </span>
-
-                    <h3>
-                        ${strip.titel || "Zonder titel"}
-                    </h3>
-
-                    <p class="likes">
-                        ❤️ ${strip.likesAantal}
-                        ${
-                            strip.likesAantal === 1
-                                ? "like"
-                                : "likes"
-                        }
-                    </p>
-
-                    <a
-                        class="knop"
-                        href="pages/lezen.html?id=${encodeURIComponent(strip.id)}"
+                    <img
+                        src="${strip.cover || ""}"
+                        alt="Cover van ${strip.titel || "strip"}"
+                        class="populaire-cover"
                     >
-                        📖 Lezen
-                    </a>
 
-                </div>
+                    <div class="populaire-info">
 
-            `;
+                        <span class="populair-label">
+                            🔥 Populair
+                        </span>
 
-            lijst.appendChild(kaart);
+                        <h3>
+                            ${strip.titel || "Zonder titel"}
+                        </h3>
 
-        });
+                        <p class="likes">
+                            ❤️ ${strip.likesAantal}
+                            ${
+                                strip.likesAantal === 1
+                                    ? "like"
+                                    : "likes"
+                            }
+                        </p>
+
+                        <a
+                            class="knop"
+                            href="pages/lezen.html?id=${encodeURIComponent(id)}"
+                        >
+                            📖 Lezen
+                        </a>
+
+                    </div>
+
+                `;
+
+                lijst.appendChild(kaart);
+            }
+        );
 
     } catch (fout) {
 
@@ -127,9 +136,7 @@ async function laadPopulaireStrips() {
                 </p>
             </div>
         `;
-
     }
-
 }
 
 laadPopulaireStrips();
