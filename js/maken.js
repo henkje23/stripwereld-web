@@ -11,6 +11,10 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
+// ===============================
+// HTML ELEMENTEN
+// ===============================
+
 const form =
     document.getElementById("strip-form");
 
@@ -36,11 +40,18 @@ const publiceerKnop =
     document.getElementById("publiceer-knop");
 
 
+// ===============================
+// VARIABELEN
+// ===============================
+
 let gebruiker = null;
 
 let paginaBestanden = [];
 
 
+// ===============================
+// FIREBASE LOGIN CONTROLEREN
+// ===============================
 
 onAuthStateChanged(
     auth,
@@ -49,10 +60,28 @@ onAuthStateChanged(
         gebruiker =
             ingelogdeGebruiker;
 
+        if (gebruiker) {
+
+            console.log(
+                "Ingelogd als:",
+                gebruiker.email
+            );
+
+        } else {
+
+            console.log(
+                "Niet ingelogd."
+            );
+
+        }
+
     }
 );
 
 
+// ===============================
+// COVER VOORVERTONEN
+// ===============================
 
 coverInput.addEventListener(
     "change",
@@ -60,33 +89,26 @@ coverInput.addEventListener(
 
         coverPreview.innerHTML = "";
 
-
         const bestand =
             coverInput.files[0];
-
 
         if (!bestand) {
             return;
         }
 
-
         const afbeelding =
             document.createElement("img");
-
 
         afbeelding.src =
             URL.createObjectURL(
                 bestand
             );
 
-
         afbeelding.style.maxWidth =
             "250px";
 
-
         afbeelding.style.borderRadius =
             "10px";
-
 
         coverPreview.appendChild(
             afbeelding
@@ -96,6 +118,9 @@ coverInput.addEventListener(
 );
 
 
+// ===============================
+// PAGINA'S KIEZEN
+// ===============================
 
 paginaInput.addEventListener(
     "change",
@@ -106,18 +131,19 @@ paginaInput.addEventListener(
                 paginaInput.files
             );
 
-
         toonPaginaPreviews();
 
     }
 );
 
 
+// ===============================
+// PAGINA'S VOORVERtonen
+// ===============================
 
 function toonPaginaPreviews() {
 
     paginaPreviews.innerHTML = "";
-
 
     paginaBestanden.forEach(
         (bestand, index) => {
@@ -125,37 +151,38 @@ function toonPaginaPreviews() {
             const kaart =
                 document.createElement("div");
 
-
             kaart.className =
                 "strip-kaart";
 
 
+            const nummer =
+                document.createElement("p");
+
+            nummer.textContent =
+                `Pagina ${index + 1}`;
+
+
             const afbeelding =
                 document.createElement("img");
-
 
             afbeelding.src =
                 URL.createObjectURL(
                     bestand
                 );
 
-
             afbeelding.style.maxWidth =
                 "200px";
 
+            afbeelding.style.maxHeight =
+                "300px";
 
-            const nummer =
-                document.createElement("p");
-
-
-            nummer.textContent =
-                `Pagina ${index + 1}`;
+            afbeelding.style.borderRadius =
+                "10px";
 
 
             kaart.appendChild(
                 nummer
             );
-
 
             kaart.appendChild(
                 afbeelding
@@ -172,6 +199,15 @@ function toonPaginaPreviews() {
 }
 
 
+// ===============================
+// BESTAND UPLOADEN
+// ===============================
+//
+// De website stuurt het bestand naar
+// jouw Cloudflare Worker.
+//
+// De Worker handelt de upload verder af.
+// ===============================
 
 async function uploadBestand(bestand) {
 
@@ -185,8 +221,9 @@ async function uploadBestand(bestand) {
     );
 
 
-    const antwoord = await fetch(
-    "https://stripwereld-uploader.hendrikbrouns0.workers.dev/",
+    const antwoord =
+        await fetch(
+            "https://stripwereld-uploader.hendrikbrouns0.workers.dev/",
             {
                 method: "POST",
                 body: formulier
@@ -225,6 +262,9 @@ async function uploadBestand(bestand) {
 }
 
 
+// ===============================
+// STRIP PUBLICEREN
+// ===============================
 
 form.addEventListener(
     "submit",
@@ -232,6 +272,10 @@ form.addEventListener(
 
         event.preventDefault();
 
+
+        // -------------------------------
+        // LOGIN CONTROLEREN
+        // -------------------------------
 
         if (!gebruiker) {
 
@@ -243,6 +287,10 @@ form.addEventListener(
         }
 
 
+        // -------------------------------
+        // GEGEVENS OPHALEN
+        // -------------------------------
+
         const titel =
             titelInput.value.trim();
 
@@ -250,6 +298,10 @@ form.addEventListener(
         const cover =
             coverInput.files[0];
 
+
+        // -------------------------------
+        // CONTROLEREN
+        // -------------------------------
 
         if (!titel) {
 
@@ -281,48 +333,58 @@ form.addEventListener(
         }
 
 
+        // -------------------------------
+        // KNOP UITSCHAKELEN
+        // -------------------------------
+
         publiceerKnop.disabled =
             true;
 
 
         try {
 
+            // =================================
+            // ALLE BESTANDEN UPLOADEN
+            // =================================
+
             status.textContent =
-                "⏳ Cover uploaden...";
+                "⏳ Afbeeldingen uploaden...";
 
 
+            // Cover + alle pagina's
+            // worden tegelijk geüpload.
+
+            const bestanden =
+                [
+                    cover,
+                    ...paginaBestanden
+                ];
+
+
+            const uploadResultaten =
+                await Promise.all(
+                    bestanden.map(
+                        (bestand) =>
+                            uploadBestand(
+                                bestand
+                            )
+                    )
+                );
+
+
+            // Eerste resultaat = cover
             const coverUrl =
-                await uploadBestand(
-                    cover
-                );
+                uploadResultaten[0];
 
 
+            // De rest = pagina's
             const afbeeldingen =
-                [];
+                uploadResultaten.slice(1);
 
 
-            for (
-                let i = 0;
-                i < paginaBestanden.length;
-                i++
-            ) {
-
-                status.textContent =
-                    `⏳ Pagina ${i + 1} van ${paginaBestanden.length} uploaden...`;
-
-
-                const url =
-                    await uploadBestand(
-                        paginaBestanden[i]
-                    );
-
-
-                afbeeldingen.push(
-                    url
-                );
-
-            }
-
+            // =================================
+            // OPSLAAN IN FIREBASE
+            // =================================
 
             status.textContent =
                 "⏳ Strip opslaan in Firebase...";
@@ -345,9 +407,11 @@ form.addEventListener(
                 stripRef,
                 {
 
-                    titel: titel,
+                    titel:
+                        titel,
 
-                    cover: coverUrl,
+                    cover:
+                        coverUrl,
 
                     afbeeldingen:
                         afbeeldingen,
@@ -359,9 +423,15 @@ form.addEventListener(
             );
 
 
+            // =================================
+            // GELUKT
+            // =================================
+
             status.textContent =
                 "✅ Strip gepubliceerd!";
 
+
+            // Formulier leegmaken
 
             form.reset();
 
@@ -369,18 +439,26 @@ form.addEventListener(
             coverPreview.innerHTML =
                 "";
 
+
             paginaPreviews.innerHTML =
                 "";
+
 
             paginaBestanden =
                 [];
 
 
+            // =================================
+            // NA 1 SECOND NAAR DE STRIP
+            // =================================
+
             setTimeout(
                 () => {
 
                     window.location.href =
-                        `lezen.html?id=${encodeURIComponent(stripId)}`;
+                        `lezen.html?id=${encodeURIComponent(
+                            stripId
+                        )}`;
 
                 },
                 1000
@@ -397,6 +475,7 @@ form.addEventListener(
 
             status.textContent =
                 `❌ ${fout.message}`;
+
 
         } finally {
 
