@@ -130,14 +130,7 @@ async function laadPopulaireStrips() {
                         </h3>
 
 
-                        <p class="likes">
-                            ❤️ ${strip.likesAantal}
-                            ${
-                                strip.likesAantal === 1
-                                    ? "like"
-                                    : "likes"
-                            }
-                        </p>
+                    
 
 
                         <a
