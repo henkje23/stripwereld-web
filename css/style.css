@@ -2,135 +2,240 @@
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #F4F7FB;
-    color: #252A30;
+
+/* =================================
+   THEMA
+   ================================= */
+
+:root {
+    --primaire-kleur: #4A90E2;
+    --primaire-hover: #397FCF;
+
+    --achtergrond: #F4F7FB;
+    --kaart: #FFFFFF;
+
+    --tekst: #252A30;
+    --subtekst: #68727D;
+
+    --header: #252A30;
+    --header-hover: #3A424B;
+
+    --rand: #D5E2EF;
 }
 
-/* HEADER */
+
+/* =================================
+   BODY
+   ================================= */
+
+body {
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: var(--achtergrond);
+
+    color: var(--tekst);
+
+    transition:
+        background-color 0.35s ease,
+        color 0.35s ease;
+}
+
+
+/* =================================
+   HEADER
+   ================================= */
 
 header {
-    background: #252A30;
+    background: var(--header);
+
     color: white;
+
     min-height: 76px;
+
     padding: 10px 28px;
 
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
+    box-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.12);
+
+    transition:
+        background-color 0.35s ease;
 }
+
 
 .logo {
     display: flex;
+
     align-items: center;
 }
+
 
 .logo-afbeelding {
     height: 58px;
+
     width: auto;
+
     display: block;
+
     border-radius: 8px;
 }
 
+
 nav {
     display: flex;
+
     align-items: center;
+
     gap: 8px;
 }
 
+
 nav a {
     color: white;
+
     text-decoration: none;
+
     padding: 10px 14px;
+
     border-radius: 9px;
+
     transition: 0.2s;
 }
 
+
 nav a:hover {
-    background: #3A424B;
+    background: var(--header-hover);
 }
 
-/* MAIN */
+
+/* =================================
+   MAIN
+   ================================= */
 
 main {
     max-width: 1200px;
+
     margin: auto;
+
     padding: 35px 22px 60px;
 }
 
-/* HERO */
+
+/* =================================
+   HERO
+   ================================= */
 
 .hero {
     min-height: 390px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     text-align: center;
 
     border-radius: 24px;
 
-    background: linear-gradient(
-        135deg,
-        #BFE3FF 0%,
-        #FFFFFF 48%,
-        #FFE6A7 100%
-    );
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(
+                in srgb,
+                var(--primaire-kleur) 28%,
+                white
+            ) 0%,
 
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+            white 48%,
+
+            #FFE6A7 100%
+        );
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.08);
 
     padding: 55px 25px;
+
+    transition:
+        background 0.5s ease;
 }
+
 
 .hero-tekst {
     max-width: 700px;
 }
 
+
 .badge {
     display: inline-block;
 
-    background: #E5F3FF;
-    color: #357CC4;
+    background:
+        color-mix(
+            in srgb,
+            var(--primaire-kleur) 12%,
+            white
+        );
+
+    color: var(--primaire-kleur);
 
     padding: 8px 14px;
 
     border-radius: 50px;
 
     font-size: 13px;
+
     font-weight: bold;
 }
 
+
 .hero h1 {
     font-size: clamp(38px, 6vw, 64px);
+
     margin: 18px 0 12px;
-    color: #252A30;
+
+    color: var(--tekst);
 }
+
 
 .hero p {
     font-size: 19px;
-    color: #58636E;
+
+    color: var(--subtekst);
+
     line-height: 1.6;
 }
 
+
 .hero-knoppen {
     display: flex;
+
     justify-content: center;
+
     gap: 12px;
+
     flex-wrap: wrap;
+
     margin-top: 28px;
 }
 
-/* KNOPPEN */
+
+/* =================================
+   KNOPPEN
+   ================================= */
 
 .knop {
     display: inline-block;
 
-    background: #4A90E2;
+    background: var(--primaire-kleur);
+
     color: white;
 
     padding: 12px 20px;
@@ -141,103 +246,157 @@ main {
 
     font-weight: bold;
 
-    transition: 0.2s;
+    transition:
+        0.2s,
+        background-color 0.35s ease;
 }
+
 
 .knop:hover {
     transform: translateY(-2px);
-    background: #397FCF;
-    box-shadow: 0 6px 15px rgba(74, 144, 226, 0.25);
+
+    background: var(--primaire-hover);
+
+    box-shadow:
+        0 6px 15px
+        color-mix(
+            in srgb,
+            var(--primaire-kleur) 25%,
+            transparent
+        );
 }
+
 
 .knop-secundair {
     background: white;
-    color: #252A30;
-    border: 1px solid #D5E2EF;
+
+    color: var(--tekst);
+
+    border: 1px solid var(--rand);
 }
+
 
 .knop-secundair:hover {
-    background: #F0F7FF;
+    background:
+        color-mix(
+            in srgb,
+            var(--primaire-kleur) 7%,
+            white
+        );
 }
 
-/* POPULAIR */
+
+/* =================================
+   POPULAIR
+   ================================= */
 
 .populair {
     margin-top: 55px;
 }
 
+
 .sectie-kop {
     display: flex;
+
     justify-content: space-between;
+
     align-items: end;
+
     gap: 20px;
 
     margin-bottom: 22px;
 }
 
+
 .klein-label {
-    color: #4A90E2;
+    color: var(--primaire-kleur);
+
     font-size: 13px;
+
     font-weight: bold;
+
     letter-spacing: 1.5px;
 }
 
+
 .sectie-kop h2 {
     font-size: 34px;
+
     margin: 5px 0;
-    color: #252A30;
+
+    color: var(--tekst);
 }
 
+
 .sectie-kop p {
-    color: #68727D;
+    color: var(--subtekst);
+
     margin: 0;
 }
 
+
 .alles-link {
-    color: #4A90E2;
+    color: var(--primaire-kleur);
+
     text-decoration: none;
+
     font-weight: bold;
 }
 
+
 .alles-link:hover {
-    color: #357CC4;
+    color: var(--primaire-hover);
 }
 
-/* POPULAIRE KAARTEN */
+
+/* =================================
+   POPULAIRE KAARTEN
+   ================================= */
 
 .populaire-grid {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, 1fr);
 
     gap: 22px;
 }
+
 
 .populaire-kaart {
     position: relative;
 
     display: flex;
+
     gap: 22px;
 
-    background: #FFFFFF;
+    background: var(--kaart);
 
     padding: 18px;
 
     border-radius: 20px;
 
-    box-shadow: 0 8px 28px rgba(37, 42, 48, 0.07);
+    box-shadow:
+        0 8px 28px rgba(37, 42, 48, 0.07);
 
-    transition: 0.2s;
+    transition:
+        0.2s,
+        background-color 0.35s ease;
 }
+
 
 .populaire-kaart:hover {
     transform: translateY(-4px);
 
-    box-shadow: 0 14px 35px rgba(37, 42, 48, 0.12);
+    box-shadow:
+        0 14px 35px
+        rgba(37, 42, 48, 0.12);
 }
+
 
 .populaire-cover {
     width: 190px;
+
     height: 190px;
 
     object-fit: cover;
@@ -245,34 +404,47 @@ main {
     border-radius: 15px;
 }
 
+
 .populaire-info {
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
 }
 
+
 .populaire-info h3 {
     font-size: 25px;
+
     margin: 8px 0;
 
-    color: #252A30;
+    color: var(--tekst);
 }
+
 
 .populair-label {
     color: #F08A24;
+
     font-size: 13px;
+
     font-weight: bold;
 }
 
-/* RANG NUMMER */
+
+/* =================================
+   RANG NUMMER
+   ================================= */
 
 .populair-nummer {
     position: absolute;
 
     top: 13px;
+
     left: 13px;
 
-    background: #4A90E2;
+    background: var(--primaire-kleur);
+
     color: white;
 
     padding: 6px 10px;
@@ -284,43 +456,61 @@ main {
     z-index: 2;
 }
 
-/* LADEN */
+
+/* =================================
+   LADEN
+   ================================= */
 
 .laden-kaart,
 .geen-strips {
-    background: #FFFFFF;
+    background: var(--kaart);
 
     border-radius: 18px;
 
     padding: 35px;
 
     text-align: center;
+
+    transition:
+        background-color 0.35s ease;
 }
+
 
 .spinner {
     width: 30px;
+
     height: 30px;
 
-    border: 4px solid #DDEAF6;
-    border-top-color: #4A90E2;
+    border: 4px solid var(--rand);
+
+    border-top-color:
+        var(--primaire-kleur);
 
     border-radius: 50%;
 
-    animation: draaien 0.8s linear infinite;
+    animation:
+        draaien 0.8s linear infinite;
 
     margin: auto;
 }
 
+
 @keyframes draaien {
+
     to {
         transform: rotate(360deg);
     }
+
 }
 
-/* FORMULIEREN */
+
+/* =================================
+   FORMULIEREN
+   ================================= */
 
 input,
-textarea {
+textarea,
+select {
     width: 100%;
 
     padding: 12px;
@@ -329,24 +519,43 @@ textarea {
 
     border-radius: 8px;
 
-    border: 1px solid #D5E2EF;
+    border: 1px solid var(--rand);
 
-    background: #FFFFFF;
+    background: var(--kaart);
 
-    color: #252A30;
+    color: var(--tekst);
+
+    transition:
+        background-color 0.35s ease,
+        color 0.35s ease,
+        border-color 0.35s ease;
 }
+
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
     outline: none;
-    border-color: #4A90E2;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.12);
+
+    border-color:
+        var(--primaire-kleur);
+
+    box-shadow:
+        0 0 0 3px
+        color-mix(
+            in srgb,
+            var(--primaire-kleur) 12%,
+            transparent
+        );
 }
 
-/* STRIPS */
+
+/* =================================
+   STRIPS
+   ================================= */
 
 .strip-kaart {
-    background: #FFFFFF;
+    background: var(--kaart);
 
     padding: 20px;
 
@@ -354,19 +563,30 @@ textarea:focus {
 
     margin: 15px 0;
 
-    box-shadow: 0 5px 20px rgba(37, 42, 48, 0.05);
+    box-shadow:
+        0 5px 20px
+        rgba(37, 42, 48, 0.05);
+
+    transition:
+        background-color 0.35s ease;
 }
+
 
 .strip-kaart img {
     max-width: 250px;
+
     border-radius: 12px;
 }
+
 
 img {
     max-width: 100%;
 }
 
-/* FOOTER */
+
+/* =================================
+   FOOTER
+   ================================= */
 
 footer {
     margin-top: 40px;
@@ -375,53 +595,73 @@ footer {
 
     text-align: center;
 
-    background: #252A30;
+    background: var(--header);
 
     color: white;
+
+    transition:
+        background-color 0.35s ease;
 }
+
 
 footer p {
     color: #B9C2CB;
 }
 
-/* MOBIEL */
+
+/* =================================
+   MOBIEL
+   ================================= */
 
 @media (max-width: 750px) {
 
     header {
         padding: 10px 15px;
+
         flex-direction: column;
+
         gap: 10px;
     }
 
+
     nav {
         flex-wrap: wrap;
+
         justify-content: center;
     }
+
 
     .logo-afbeelding {
         height: 50px;
     }
 
+
     .populaire-grid {
         grid-template-columns: 1fr;
     }
+
 
     .populaire-kaart {
         flex-direction: column;
     }
 
+
     .populaire-cover {
         width: 100%;
+
         height: 230px;
     }
 
+
     .sectie-kop {
         align-items: flex-start;
+
         flex-direction: column;
     }
+
 
     .hero {
         min-height: 330px;
     }
+
 }
