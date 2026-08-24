@@ -2,86 +2,120 @@
 <html lang="nl">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StripWereld</title>
 
-<title>StripWereld</title>
-
-<link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 
 <body>
 
-
 <header>
 
-<a href="index.html" class="logo">
-    <img src="logo.jpeg" alt="StripWereld" class="logo-afbeelding">
-</a>
+    <a href="index.html" class="logo">
+        <img src="logo.jpeg" alt="StripWereld" class="logo-afbeelding">
+    </a>
 
-
-<nav>
-
-<a href="index.html">
-Home
-</a>
-
-<a href="pages/alle-strips.html">
-Alle strips
-</a>
-
-
-<a href="pages/zoeken.html">
-Zoeken
-</a>
-
-</nav>
-
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="pages/alle-strips.html">Alle strips</a>
+        <a href="pages/zoeken.html">Zoeken</a>
+        <a href="pages/profiel.html">👤 Profiel</a>
+    </nav>
 
 </header>
 
 
-
 <main>
 
+    <section class="hero">
 
-<section class="hero">
+        <div class="hero-tekst">
+
+            <span class="badge">📚 STRIPWERELD</span>
+
+            <h1>
+                Lees. Ontdek. Geniet.
+            </h1>
+
+            <p>
+                Ontdek leuke strips, vind nieuwe verhalen
+                en lees jouw favoriete strips.
+            </p>
+
+            <div class="hero-knoppen">
+
+                <a class="knop" href="pages/alle-strips.html">
+                    📚 Alle strips
+                </a>
+
+                <a class="knop knop-secundair" href="pages/zoeken.html">
+                    🔍 Zoek een strip
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
-<h1>
-Welkom bij StripWereld
-</h1>
+    <section class="populair">
+
+        <div class="sectie-kop">
+
+            <div>
+                <span class="klein-label">TRENDING</span>
+
+                <h2>
+                    🔥 Populaire strips
+                </h2>
+
+                <p>
+                    De strips met de meeste likes.
+                </p>
+            </div>
+
+            <a href="pages/alle-strips.html" class="alles-link">
+                Bekijk alles →
+            </a>
+
+        </div>
 
 
-<p>
-Lees strips, ontdek nieuwe verhalen en maak je eigen strips.
-</p>
+        <div id="populaire-strips" class="populaire-grid">
 
+            <div class="laden-kaart">
+                <div class="spinner"></div>
+                <p>Populaire strips laden...</p>
+            </div>
 
-<a class="knop" href="pages/alle-strips.html">
-📚 Ontdek strips
-</a>
+        </div>
 
-
-</section>
-
+    </section>
 
 
 </main>
 
 
-
 <footer>
 
-© 2026 StripWereld
+    <strong>📚 StripWereld</strong>
+
+    <p>
+        Lees • Ontdek • Geniet
+    </p>
+
+    <small>
+        © 2026 StripWereld
+    </small>
 
 </footer>
 
 
+<script type="module" src="js/index.js"></script>
 
 </body>
-
 </html>
