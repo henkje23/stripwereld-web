@@ -22,31 +22,54 @@ const wachtwoordVergeten =
     document.getElementById("wachtwoord-vergeten");
 
 
-// Blijf ingelogd totdat de gebruiker zelf uitlogt
-await setPersistence(
-    auth,
-    browserLocalPersistence
-);
+// ============================================
+// INLOGGEN BLIJVEND BEWAREN
+// ============================================
+
+try {
+
+    await setPersistence(
+        auth,
+        browserLocalPersistence
+    );
+
+} catch (fout) {
+
+    console.error(
+        "Persistence fout:",
+        fout
+    );
+
+}
 
 
+// ============================================
 // INLOGGEN
+// ============================================
+
 formulier.addEventListener(
     "submit",
     async (event) => {
 
         event.preventDefault();
 
+
         const email =
-            document.getElementById("email")
+            document
+                .getElementById("email")
                 .value
                 .trim();
 
+
         const wachtwoord =
-            document.getElementById("wachtwoord")
+            document
+                .getElementById("wachtwoord")
                 .value;
+
 
         status.textContent =
             "⏳ Inloggen...";
+
 
         try {
 
@@ -56,11 +79,15 @@ formulier.addEventListener(
                 wachtwoord
             );
 
+
             status.textContent =
                 "✅ Ingelogd!";
 
+
+            // NA INLOGGEN ALTIJD NAAR HOME
             window.location.href =
-                "alle-strips.html";
+                "../index.html";
+
 
         } catch (fout) {
 
@@ -68,6 +95,7 @@ formulier.addEventListener(
                 "Login fout:",
                 fout
             );
+
 
             status.textContent =
                 "❌ E-mailadres of wachtwoord is fout.";
@@ -78,19 +106,26 @@ formulier.addEventListener(
 );
 
 
+// ============================================
 // ACCOUNT AANMAKEN
+// ============================================
+
 accountMaken.addEventListener(
     "click",
     async () => {
 
         const email =
-            document.getElementById("email")
+            document
+                .getElementById("email")
                 .value
                 .trim();
 
+
         const wachtwoord =
-            document.getElementById("wachtwoord")
+            document
+                .getElementById("wachtwoord")
                 .value;
+
 
         if (!email || !wachtwoord) {
 
@@ -100,8 +135,10 @@ accountMaken.addEventListener(
             return;
         }
 
+
         status.textContent =
             "⏳ Account maken...";
+
 
         try {
 
@@ -111,11 +148,15 @@ accountMaken.addEventListener(
                 wachtwoord
             );
 
+
             status.textContent =
                 "✅ Account aangemaakt!";
 
+
+            // NA ACCOUNT MAKEN NAAR HOME
             window.location.href =
-                "alle-strips.html";
+                "../index.html";
+
 
         } catch (fout) {
 
@@ -123,6 +164,7 @@ accountMaken.addEventListener(
                 "Account fout:",
                 fout
             );
+
 
             if (
                 fout.code ===
@@ -132,6 +174,7 @@ accountMaken.addEventListener(
                 status.textContent =
                     "❌ Dit e-mailadres bestaat al.";
 
+
             } else if (
                 fout.code ===
                 "auth/weak-password"
@@ -139,6 +182,7 @@ accountMaken.addEventListener(
 
                 status.textContent =
                     "❌ Het wachtwoord is te zwak.";
+
 
             } else {
 
@@ -153,15 +197,20 @@ accountMaken.addEventListener(
 );
 
 
+// ============================================
 // WACHTWOORD VERGETEN
+// ============================================
+
 wachtwoordVergeten.addEventListener(
     "click",
     async () => {
 
         const email =
-            document.getElementById("email")
+            document
+                .getElementById("email")
                 .value
                 .trim();
+
 
         if (!email) {
 
@@ -171,8 +220,10 @@ wachtwoordVergeten.addEventListener(
             return;
         }
 
+
         status.textContent =
             "⏳ Resetmail versturen...";
+
 
         try {
 
@@ -181,8 +232,10 @@ wachtwoordVergeten.addEventListener(
                 email
             );
 
+
             status.textContent =
                 "✅ Resetmail verstuurd! Controleer je e-mail.";
+
 
         } catch (fout) {
 
@@ -190,6 +243,7 @@ wachtwoordVergeten.addEventListener(
                 "Wachtwoord reset fout:",
                 fout
             );
+
 
             status.textContent =
                 "❌ Er kon geen resetmail worden verstuurd.";
