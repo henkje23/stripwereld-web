@@ -8,11 +8,6 @@ import {
 const lijst = document.getElementById("populaire-strips");
 
 async function laadPopulaireStrips() {
-    if (!lijst) {
-        console.error("Element #populaire-strips bestaat niet.");
-        return;
-    }
-
     try {
         const snapshot = await get(ref(database, "strips"));
 
@@ -35,29 +30,23 @@ async function laadPopulaireStrips() {
                     ref(database, `strips/${id}/likes`)
                 );
 
-                let likesAantal = 0;
-
-                if (likesSnapshot.exists()) {
-                    const likes = likesSnapshot.val();
-
-                    if (likes && typeof likes === "object") {
-                        likesAantal = Object.keys(likes).length;
-                    }
-                }
+                const likesAantal = likesSnapshot.exists()
+                    ? Object.keys(likesSnapshot.val()).length
+                    : 0;
 
                 console.log(
                     `${strip.titel || "Zonder titel"}: ${likesAantal} likes`
                 );
 
                 return {
-                    id,
+                    id: id,
                     ...strip,
-                    likesAantal
+                    likesAantal: likesAantal
                 };
             })
         );
 
-        // Meeste likes eerst
+        // Sorteer van meeste naar minste likes
         stripsMetLikes.sort(
             (a, b) => b.likesAantal - a.likesAantal
         );
@@ -72,11 +61,6 @@ async function laadPopulaireStrips() {
             const kaart = document.createElement("article");
 
             kaart.className = "populaire-kaart";
-
-            const likeTekst =
-                strip.likesAantal === 1
-                    ? "like"
-                    : "likes";
 
             kaart.innerHTML = `
                 <div class="populair-nummer">
@@ -100,12 +84,13 @@ async function laadPopulaireStrips() {
                     </h3>
 
                     <p class="likes">
-                        ❤️ ${strip.likesAantal} ${likeTekst}
+                        ❤️ ${strip.likesAantal}
+                        ${strip.likesAantal === 1 ? "like" : "likes"}
                     </p>
 
                     <a
                         class="knop"
-                        href="pages/lezen.html?id=${encodeURIComponent(id)}"
+                        href="pages/lezen.html?id=${encodeURIComponent(strip.id)}"
                     >
                         📖 Lezen
                     </a>
