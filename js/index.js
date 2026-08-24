@@ -5,68 +5,104 @@ import {
     get
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
+
 const lijst = document.getElementById("populaire-strips");
+
 
 async function laadPopulaireStrips() {
 
     try {
 
+        // Alle strips ophalen
         const snapshot = await get(
             ref(database, "strips")
         );
 
+
+        // Geen strips gevonden
         if (!snapshot.exists()) {
+
             lijst.innerHTML = `
                 <div class="geen-strips">
                     <h3>📚 Nog geen strips</h3>
                     <p>Er zijn nog geen strips beschikbaar.</p>
                 </div>
             `;
+
             return;
         }
 
-        const strips = Object.entries(snapshot.val());
 
+        // Alle strips omzetten naar een array
+        const strips = Object.entries(
+            snapshot.val()
+        );
+
+
+        // Voor iedere strip het aantal likes ophalen
         const stripsMetLikes = await Promise.all(
+
             strips.map(
                 async ([id, strip]) => {
 
-                    // EXACT DE LIKES VAN DE STRIP OPHALEN
                     const likesSnapshot = await get(
                         ref(database, `strips/${id}/likes`)
                     );
 
-                    const likesAantal = likesSnapshot.exists()
-                        ? Array.from(likesSnapshot.children).length
-                        : 0;
+
+                    // Aantal likes rechtstreeks uit Firebase tellen
+                    const likesAantal =
+                        likesSnapshot.exists()
+                            ? Object.keys(
+                                likesSnapshot.val()
+                            ).length
+                            : 0;
+
+
+                    console.log(
+                        `${strip.titel}: ${likesAantal} likes`
+                    );
+
 
                     return {
-                        id,
+                        id: id,
                         ...strip,
-                        likesAantal
+                        likesAantal: likesAantal
                     };
+
                 }
             )
+
         );
 
-        // Sorteren: meeste likes eerst
+
+        // Sorteren van meeste naar minste likes
         stripsMetLikes.sort(
-            (a, b) => b.likesAantal - a.likesAantal
+            (a, b) =>
+                b.likesAantal - a.likesAantal
         );
 
-        // Top 2
+
+        // Alleen de 2 populairste strips
         const populaireStrips =
             stripsMetLikes.slice(0, 2);
 
+
+        // Oude inhoud verwijderen
         lijst.innerHTML = "";
 
+
+        // Populaire strips tonen
         populaireStrips.forEach(
             (strip, index) => {
 
                 const kaart =
                     document.createElement("article");
 
-                kaart.className = "populaire-kaart";
+
+                kaart.className =
+                    "populaire-kaart";
+
 
                 kaart.innerHTML = `
 
@@ -74,11 +110,13 @@ async function laadPopulaireStrips() {
                         #${index + 1}
                     </div>
 
+
                     <img
                         src="${strip.cover || ""}"
                         alt="Cover van ${strip.titel || "strip"}"
                         class="populaire-cover"
                     >
+
 
                     <div class="populaire-info">
 
@@ -86,9 +124,11 @@ async function laadPopulaireStrips() {
                             🔥 Populair
                         </span>
 
+
                         <h3>
                             ${strip.titel || "Zonder titel"}
                         </h3>
+
 
                         <p class="likes">
                             ❤️ ${strip.likesAantal}
@@ -99,6 +139,7 @@ async function laadPopulaireStrips() {
                             }
                         </p>
 
+
                         <a
                             class="knop"
                             href="pages/lezen.html?id=${encodeURIComponent(strip.id)}"
@@ -107,11 +148,15 @@ async function laadPopulaireStrips() {
                         </a>
 
                     </div>
+
                 `;
 
+
                 lijst.appendChild(kaart);
+
             }
         );
+
 
     } catch (fout) {
 
@@ -120,15 +165,23 @@ async function laadPopulaireStrips() {
             fout
         );
 
+
         lijst.innerHTML = `
             <div class="geen-strips">
+
                 <h3>⚠️ Oeps!</h3>
+
                 <p>
                     De populaire strips konden niet geladen worden.
                 </p>
+
             </div>
         `;
+
     }
+
 }
 
+
+// Starten
 laadPopulaireStrips();
