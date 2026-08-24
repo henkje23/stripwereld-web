@@ -26,56 +26,49 @@ function pasThemaToe(thema) {
         ...thema
     };
 
+    const root = document.documentElement;
 
-    document.documentElement.style.setProperty(
+    root.style.setProperty(
         "--primaire-kleur",
         gekozen.primaireKleur
     );
 
-
-    document.documentElement.style.setProperty(
+    root.style.setProperty(
         "--primaire-hover",
         gekozen.primaireHover
     );
 
-
-    document.documentElement.style.setProperty(
+    root.style.setProperty(
         "--achtergrond",
         gekozen.achtergrond
     );
 
-
-    document.documentElement.style.setProperty(
+    root.style.setProperty(
         "--kaart",
         gekozen.kaart
     );
 
-
-    document.documentElement.style.setProperty(
+    root.style.setProperty(
         "--tekst",
         gekozen.tekst
     );
 
-
-    document.documentElement.style.setProperty(
+    root.style.setProperty(
         "--subtekst",
         gekozen.subtekst
     );
 
-
-    document.documentElement.style.setProperty(
+    root.style.setProperty(
         "--header",
         gekozen.header
     );
 
-
-    document.documentElement.style.setProperty(
+    root.style.setProperty(
         "--header-hover",
         gekozen.headerHover
     );
 
-
-    document.documentElement.style.setProperty(
+    root.style.setProperty(
         "--rand",
         gekozen.rand
     );
@@ -94,7 +87,6 @@ function laadThema() {
             localStorage.getItem(
                 "stripwereldThema"
             );
-
 
         if (opgeslagen) {
 
@@ -120,9 +112,7 @@ function laadThema() {
         pasThemaToe(
             standaardThema
         );
-
     }
-
 }
 
 
@@ -132,21 +122,70 @@ function laadThema() {
 
 function bewaarThema(thema) {
 
+    const compleetThema = {
+        ...standaardThema,
+        ...thema
+    };
+
     localStorage.setItem(
         "stripwereldThema",
-        JSON.stringify(thema)
+        JSON.stringify(compleetThema)
     );
 
-
-    pasThemaToe(thema);
+    pasThemaToe(
+        compleetThema
+    );
 }
 
 
-// Meteen laden
+// ============================================
+// HUIDIG THEMA OPHALEN
+// ============================================
+
+function haalThemaOp() {
+
+    try {
+
+        const opgeslagen =
+            localStorage.getItem(
+                "stripwereldThema"
+            );
+
+        if (opgeslagen) {
+
+            return {
+                ...standaardThema,
+                ...JSON.parse(opgeslagen)
+            };
+
+        }
+
+    } catch (fout) {
+
+        console.error(
+            "Thema kon niet opgehaald worden:",
+            fout
+        );
+    }
+
+    return {
+        ...standaardThema
+    };
+}
+
+
+// ============================================
+// DIRECT BIJ HET LADEN TOEPASSEN
+// ============================================
+
 laadThema();
 
 
-// Beschikbaar maken voor profiel.js
+// ============================================
+// BESCHIKBAAR MAKEN VOOR PROFIEL.JS
+// ============================================
+
 window.pasThemaToe = pasThemaToe;
 window.bewaarThema = bewaarThema;
+window.haalThemaOp = haalThemaOp;
 window.standaardThema = standaardThema;
