@@ -185,9 +185,8 @@ async function uploadBestand(bestand) {
     );
 
 
-    const antwoord =
-        await fetch(
-            "https://picrd.com/api/upload",
+    const antwoord = await fetch(
+    "https://stripwereld-uploader.hendrikbrouns0.workers.dev/",
             {
                 method: "POST",
                 body: formulier
