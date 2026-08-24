@@ -8,61 +8,66 @@ import {
 const lijst = document.getElementById("populaire-strips");
 
 async function laadPopulaireStrips() {
+
     try {
-        const snapshot = await get(ref(database, "strips"));
+
+        const snapshot = await get(
+            ref(database, "strips")
+        );
 
         if (!snapshot.exists()) {
+
             lijst.innerHTML = `
                 <div class="geen-strips">
                     <h3>📚 Nog geen strips</h3>
                     <p>Er zijn nog geen strips beschikbaar.</p>
                 </div>
             `;
+
             return;
         }
 
         const strips = Object.entries(snapshot.val());
 
-        const stripsMetLikes = await Promise.all(
-            strips.map(async ([id, strip]) => {
+        const stripsMetLikes = strips.map(([id, strip]) => {
 
-                const likesSnapshot = await get(
-                    ref(database, `strips/${id}/likes`)
-                );
-
-                const likesAantal = likesSnapshot.exists()
-                    ? Object.keys(likesSnapshot.val()).length
+            const likesAantal =
+                strip.likes
+                    ? Object.keys(strip.likes).length
                     : 0;
 
-                console.log(
-                    `${strip.titel || "Zonder titel"}: ${likesAantal} likes`
-                );
+            console.log(
+                `${strip.titel || "Zonder titel"}: ${likesAantal} likes`
+            );
 
-                return {
-                    id: id,
-                    ...strip,
-                    likesAantal: likesAantal
-                };
-            })
-        );
+            return {
+                id: id,
+                ...strip,
+                likesAantal: likesAantal
+            };
 
-        // Sorteer van meeste naar minste likes
+        });
+
+        // Meeste likes eerst
         stripsMetLikes.sort(
             (a, b) => b.likesAantal - a.likesAantal
         );
 
         // Alleen de 2 populairste
-        const populaireStrips = stripsMetLikes.slice(0, 2);
+        const populaireStrips =
+            stripsMetLikes.slice(0, 2);
 
         lijst.innerHTML = "";
 
         populaireStrips.forEach((strip, index) => {
 
-            const kaart = document.createElement("article");
+            const kaart =
+                document.createElement("article");
 
             kaart.className = "populaire-kaart";
 
             kaart.innerHTML = `
+
                 <div class="populair-nummer">
                     #${index + 1}
                 </div>
@@ -85,7 +90,11 @@ async function laadPopulaireStrips() {
 
                     <p class="likes">
                         ❤️ ${strip.likesAantal}
-                        ${strip.likesAantal === 1 ? "like" : "likes"}
+                        ${
+                            strip.likesAantal === 1
+                                ? "like"
+                                : "likes"
+                        }
                     </p>
 
                     <a
@@ -96,14 +105,19 @@ async function laadPopulaireStrips() {
                     </a>
 
                 </div>
+
             `;
 
             lijst.appendChild(kaart);
+
         });
 
     } catch (fout) {
 
-        console.error("Firebase fout:", fout);
+        console.error(
+            "Firebase fout:",
+            fout
+        );
 
         lijst.innerHTML = `
             <div class="geen-strips">
@@ -113,7 +127,9 @@ async function laadPopulaireStrips() {
                 </p>
             </div>
         `;
+
     }
+
 }
 
 laadPopulaireStrips();
