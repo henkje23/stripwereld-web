@@ -187,7 +187,7 @@ async function uploadBestand(bestand) {
 
     const antwoord =
         await fetch(
-            "http://localhost:5000/upload",
+            "https://picrd.com/api/upload",
             {
                 method: "POST",
                 body: formulier
