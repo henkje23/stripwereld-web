@@ -7,7 +7,83 @@ import {
 
 
 const lijst = document.getElementById("populaire-strips");
+const heroBanner = document.querySelector(".hero");
 
+
+// ========================================
+// RUSTIGE STANDAARD HERO
+// ========================================
+
+function rustigeHeroKleuren() {
+
+    if (!heroBanner) {
+        return;
+    }
+
+    heroBanner.style.setProperty(
+        "--hero-cover",
+        "none"
+    );
+
+    heroBanner.style.setProperty(
+        "--hero-kleur-1",
+        "#e8f7ff"
+    );
+
+    heroBanner.style.setProperty(
+        "--hero-kleur-2",
+        "#ffffff"
+    );
+
+    heroBanner.style.setProperty(
+        "--hero-kleur-3",
+        "#fff4d6"
+    );
+}
+
+
+// ========================================
+// HERO AANPASSEN AAN POPULAIRSTE STRIP
+// ========================================
+
+function veranderHeroAanStrip(coverUrl) {
+
+    if (!heroBanner || !coverUrl) {
+        rustigeHeroKleuren();
+        return;
+    }
+
+
+    // De cover wordt heel subtiel als achtergrond gebruikt.
+    // De CSS zorgt ervoor dat hij wazig en rustig blijft.
+
+    heroBanner.style.setProperty(
+        "--hero-cover",
+        `url("${coverUrl}")`
+    );
+
+
+    // Zachte neutrale kleuren zodat de tekst altijd leesbaar blijft.
+    heroBanner.style.setProperty(
+        "--hero-kleur-1",
+        "#eaf7ff"
+    );
+
+    heroBanner.style.setProperty(
+        "--hero-kleur-2",
+        "#ffffff"
+    );
+
+    heroBanner.style.setProperty(
+        "--hero-kleur-3",
+        "#fff3d6"
+    );
+}
+
+
+// ========================================
+// POPULAIRE STRIPS LADEN
+// ========================================
 
 async function laadPopulaireStrips() {
 
@@ -29,28 +105,34 @@ async function laadPopulaireStrips() {
                 </div>
             `;
 
+            rustigeHeroKleuren();
+
             return;
         }
 
 
-        // Alle strips omzetten naar een array
+        // Firebase omzetten naar array
         const strips = Object.entries(
             snapshot.val()
         );
 
 
-        // Voor iedere strip het aantal likes ophalen
+        // Likes van iedere strip ophalen
         const stripsMetLikes = await Promise.all(
 
             strips.map(
                 async ([id, strip]) => {
 
-                    const likesSnapshot = await get(
-                        ref(database, `strips/${id}/likes`)
-                    );
+                    const likesSnapshot =
+                        await get(
+                            ref(
+                                database,
+                                `strips/${id}/likes`
+                            )
+                        );
 
 
-                    // Aantal likes rechtstreeks uit Firebase tellen
+                    // Likes tellen
                     const likesAantal =
                         likesSnapshot.exists()
                             ? Object.keys(
@@ -76,23 +158,52 @@ async function laadPopulaireStrips() {
         );
 
 
-        // Sorteren van meeste naar minste likes
+        // Meeste likes eerst
         stripsMetLikes.sort(
             (a, b) =>
-                b.likesAantal - a.likesAantal
+                b.likesAantal -
+                a.likesAantal
         );
 
 
-        // Alleen de 2 populairste strips
+        // Alleen nummer 1 en 2 tonen
         const populaireStrips =
             stripsMetLikes.slice(0, 2);
+
+
+        // ========================================
+        // HERO AANPASSEN AAN #1
+        // ========================================
+
+        if (
+            populaireStrips.length > 0 &&
+            populaireStrips[0].cover
+        ) {
+
+            console.log(
+                "Populairste strip:",
+                populaireStrips[0].titel
+            );
+
+            veranderHeroAanStrip(
+                populaireStrips[0].cover
+            );
+
+        } else {
+
+            rustigeHeroKleuren();
+
+        }
 
 
         // Oude inhoud verwijderen
         lijst.innerHTML = "";
 
 
-        // Populaire strips tonen
+        // ========================================
+        // POPULAIRE STRIPS TONEN
+        // ========================================
+
         populaireStrips.forEach(
             (strip, index) => {
 
@@ -128,9 +239,6 @@ async function laadPopulaireStrips() {
                         <h3>
                             ${strip.titel || "Zonder titel"}
                         </h3>
-
-
-                    
 
 
                         <a
@@ -171,10 +279,14 @@ async function laadPopulaireStrips() {
             </div>
         `;
 
-    }
 
+        rustigeHeroKleuren();
+    }
 }
 
 
-// Starten
+// ========================================
+// START
+// ========================================
+
 laadPopulaireStrips();
