@@ -23,54 +23,185 @@ const uitloggenKnop =
 
 
 // ========================================
-// TAAL
+// VERTALINGEN
 // ========================================
 
 const vertalingen = {
 
     nl: {
-        profiel: "Profiel",
-        account: "Mijn account",
-        beheer: "Beheer je StripWereld-account.",
-        uitloggen: "🚪 Uitloggen",
-        laden: "Account laden...",
-        geenAccount: "Je bent niet ingelogd.",
-        vraag: "❓ Ik heb een vraag",
-        idee: "💡 Ik heb een idee",
-        anders: "📝 Anders",
-        taal: "🌍 Taal",
+
+        home: "Home",
+        alleStrips: "Alle strips",
+        zoeken: "Zoeken",
+        profielNav: "👤 Profiel",
+
+        badge: "👤 Mijn profiel",
+        profielTitel: "Profiel",
+
+        accountLabel: "ACCOUNT",
+        accountTitel: "Mijn account",
+        accountUitleg:
+            "Beheer je StripWereld-account.",
+
+        account: "👤 Account",
+
+        uitloggen:
+            "🚪 Uitloggen",
+
+        appTitel:
+            "📱 StripWereld-app",
+
+        appUitleg:
+            "Download de nieuwste versie van de StripWereld-app.",
+
+        download:
+            "📥 Download app (APK)",
+
+        contactTitel:
+            "💬 Contact",
+
+        contactUitleg:
+            "Heb je een vraag, idee of iets anders? Neem contact met ons op via WhatsApp.",
+
+        vraag:
+            "❓ Ik heb een vraag",
+
+        idee:
+            "💡 Ik heb een idee",
+
+        anders:
+            "📝 Anders",
+
+        taalTitel:
+            "🌍 Taal",
+
         taalUitleg:
-            "Kies de taal van de StripWereld-interface. De strips zelf worden niet vertaald."
+            "Kies de taal van de StripWereld-interface. De strips zelf worden niet vertaald.",
+
+        footer:
+            "© 2026 StripWereld",
+
+        accountLaden:
+            "Accountgegevens laden..."
+
     },
+
 
     en: {
-        profiel: "Profile",
-        account: "My account",
-        beheer: "Manage your StripWereld account.",
-        uitloggen: "🚪 Log out",
-        laden: "Loading account...",
-        geenAccount: "You are not logged in.",
-        vraag: "❓ I have a question",
-        idee: "💡 I have an idea",
-        anders: "📝 Other",
-        taal: "🌍 Language",
+
+        home: "Home",
+        alleStrips: "All comics",
+        zoeken: "Search",
+        profielNav: "👤 Profile",
+
+        badge: "👤 My profile",
+        profielTitel: "Profile",
+
+        accountLabel: "ACCOUNT",
+        accountTitel: "My account",
+        accountUitleg:
+            "Manage your StripWereld account.",
+
+        account: "👤 Account",
+
+        uitloggen:
+            "🚪 Log out",
+
+        appTitel:
+            "📱 StripWereld app",
+
+        appUitleg:
+            "Download the latest version of the StripWereld app.",
+
+        download:
+            "📥 Download app (APK)",
+
+        contactTitel:
+            "💬 Contact",
+
+        contactUitleg:
+            "Do you have a question, idea or something else? Contact us through WhatsApp.",
+
+        vraag:
+            "❓ I have a question",
+
+        idee:
+            "💡 I have an idea",
+
+        anders:
+            "📝 Other",
+
+        taalTitel:
+            "🌍 Language",
+
         taalUitleg:
-            "Choose the language of the StripWereld interface. The comics themselves are not translated."
+            "Choose the language of the StripWereld interface. The comics themselves are not translated.",
+
+        footer:
+            "© 2026 StripWereld",
+
+        accountLaden:
+            "Loading account information..."
+
     },
 
+
     fr: {
-        profiel: "Profil",
-        account: "Mon compte",
-        beheer: "Gérez votre compte StripWereld.",
-        uitloggen: "🚪 Se déconnecter",
-        laden: "Chargement du compte...",
-        geenAccount: "Vous n'êtes pas connecté.",
-        vraag: "❓ J'ai une question",
-        idee: "💡 J'ai une idée",
-        anders: "📝 Autre",
-        taal: "🌍 Langue",
+
+        home: "Accueil",
+        alleStrips: "Toutes les BD",
+        zoeken: "Rechercher",
+        profielNav: "👤 Profil",
+
+        badge: "👤 Mon profil",
+        profielTitel: "Profil",
+
+        accountLabel: "COMPTE",
+        accountTitel: "Mon compte",
+        accountUitleg:
+            "Gérez votre compte StripWereld.",
+
+        account: "👤 Compte",
+
+        uitloggen:
+            "🚪 Se déconnecter",
+
+        appTitel:
+            "📱 Application StripWereld",
+
+        appUitleg:
+            "Téléchargez la dernière version de l'application StripWereld.",
+
+        download:
+            "📥 Télécharger l'application (APK)",
+
+        contactTitel:
+            "💬 Contact",
+
+        contactUitleg:
+            "Vous avez une question, une idée ou autre chose ? Contactez-nous via WhatsApp.",
+
+        vraag:
+            "❓ J'ai une question",
+
+        idee:
+            "💡 J'ai une idée",
+
+        anders:
+            "📝 Autre",
+
+        taalTitel:
+            "🌍 Langue",
+
         taalUitleg:
-            "Choisissez la langue de l'interface StripWereld. Les bandes dessinées elles-mêmes ne sont pas traduites."
+            "Choisissez la langue de l'interface StripWereld. Les bandes dessinées elles-mêmes ne sont pas traduites.",
+
+        footer:
+            "© 2026 StripWereld",
+
+        accountLaden:
+            "Chargement des informations du compte..."
+
     }
 
 };
@@ -82,113 +213,85 @@ const vertalingen = {
 
 function zetTaal(taal) {
 
-    const vertaling =
-        vertalingen[taal] ||
-        vertalingen.nl;
+    if (!vertalingen[taal]) {
+        taal = "nl";
+    }
 
 
+    const teksten =
+        vertalingen[taal];
+
+
+    // Taal bewaren
     localStorage.setItem(
         "stripwereld-taal",
         taal
     );
 
 
+    // HTML-taal aanpassen
     document.documentElement.lang =
         taal;
 
 
-    const profielTitel =
-        document.querySelector(
-            ".hero h1"
+    // Kleurstijl aanpassen
+    document.body.classList.remove(
+        "taal-nl",
+        "taal-en",
+        "taal-fr"
+    );
+
+
+    document.body.classList.add(
+        `taal-${taal}`
+    );
+
+
+    // Alle teksten met data-i18n vervangen
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(
+            (element) => {
+
+                const sleutel =
+                    element.dataset.i18n;
+
+
+                if (teksten[sleutel]) {
+
+                    element.textContent =
+                        teksten[sleutel];
+
+                }
+
+            }
         );
 
-    if (profielTitel) {
-        profielTitel.textContent =
-            vertaling.profiel;
-    }
+
+    // Actieve taal markeren
+    document
+        .querySelectorAll(".taal-knop")
+        .forEach(
+            (knop) => {
+
+                knop.classList.remove(
+                    "actief"
+                );
 
 
-    const accountTitel =
-        document.querySelector(
-            ".sectie-kop h2"
+                if (
+                    knop.dataset.taal ===
+                    taal
+                ) {
+
+                    knop.classList.add(
+                        "actief"
+                    );
+
+                }
+
+            }
         );
-
-    if (accountTitel) {
-        accountTitel.textContent =
-            vertaling.account;
-    }
-
-
-    const accountUitleg =
-        document.querySelector(
-            ".sectie-kop p"
-        );
-
-    if (accountUitleg) {
-        accountUitleg.textContent =
-            vertaling.beheer;
-    }
-
-
-    if (uitloggenKnop) {
-        uitloggenKnop.textContent =
-            vertaling.uitloggen;
-    }
-
-
-    const taalTitel =
-        document.querySelector(
-            ".strip-kaart:nth-of-type(4) h3"
-        );
-
-    if (taalTitel) {
-        taalTitel.textContent =
-            vertaling.taal;
-    }
-
-
-    const taalUitleg =
-        document.querySelector(
-            ".strip-kaart:nth-of-type(4) p"
-        );
-
-    if (taalUitleg) {
-        taalUitleg.textContent =
-            vertaling.taalUitleg;
-    }
-
-
-    const vraagKnop =
-        document.querySelector(
-            'a[href*="Ik%20heb%20een%20vraag"]'
-        );
-
-    if (vraagKnop) {
-        vraagKnop.textContent =
-            vertaling.vraag;
-    }
-
-
-    const ideeKnop =
-        document.querySelector(
-            'a[href*="Ik%20heb%20een%20idee"]'
-        );
-
-    if (ideeKnop) {
-        ideeKnop.textContent =
-            vertaling.idee;
-    }
-
-
-    const andersKnop =
-        document.querySelector(
-            'a[href="https://wa.me/32469629062?text="]'
-        );
-
-    if (andersKnop) {
-        andersKnop.textContent =
-            vertaling.anders;
-    }
 }
 
 
@@ -205,10 +308,9 @@ document
                 "click",
                 () => {
 
-                    const taal =
-                        knop.dataset.taal;
-
-                    zetTaal(taal);
+                    zetTaal(
+                        knop.dataset.taal
+                    );
 
                 }
             );
@@ -228,12 +330,13 @@ onAuthStateChanged(
         if (!gebruiker) {
 
             profielEmail.textContent =
-                "Je bent niet ingelogd.";
+                "Niet ingelogd.";
 
             accountStatus.textContent =
-                "Je bent niet ingelogd.";
+                "Niet ingelogd.";
 
             return;
+
         }
 
 
@@ -263,10 +366,14 @@ uitloggenKnop.addEventListener(
             uitloggenKnop.disabled =
                 true;
 
+
             await signOut(auth);
 
+
+            // NA UITLOGGEN NAAR LOGIN
             window.location.href =
-                "../login.html";
+                "login.html";
+
 
         } catch (fout) {
 
@@ -275,12 +382,15 @@ uitloggenKnop.addEventListener(
                 fout
             );
 
+
             alert(
                 "Uitloggen mislukt. Probeer opnieuw."
             );
 
+
             uitloggenKnop.disabled =
                 false;
+
         }
 
     }
@@ -297,4 +407,6 @@ const opgeslagenTaal =
     ) || "nl";
 
 
-zetTaal(opgeslagenTaal);
+zetTaal(
+    opgeslagenTaal
+);
