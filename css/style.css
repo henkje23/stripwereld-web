@@ -2,51 +2,39 @@
     box-sizing: border-box;
 }
 
-
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f3f6fa;
-    color: #17202a;
+    background: #F4F7FB;
+    color: #252A30;
 }
 
-
-/* ========================================
-   HEADER
-   ======================================== */
+/* HEADER */
 
 header {
-    background: #101318;
+    background: #252A30;
     color: white;
-
     min-height: 76px;
-
     padding: 10px 28px;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    box-shadow:
-        0 3px 15px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
 }
-
 
 .logo {
     display: flex;
     align-items: center;
 }
 
-
 .logo-afbeelding {
     height: 58px;
     width: auto;
-
     display: block;
-
     border-radius: 8px;
 }
-
 
 nav {
     display: flex;
@@ -54,46 +42,29 @@ nav {
     gap: 8px;
 }
 
-
 nav a {
     color: white;
     text-decoration: none;
-
     padding: 10px 14px;
-
     border-radius: 9px;
-
     transition: 0.2s;
 }
 
-
 nav a:hover {
-    background: #242a33;
+    background: #3A424B;
 }
 
-
-/* ========================================
-   MAIN
-   ======================================== */
+/* MAIN */
 
 main {
     max-width: 1200px;
-
     margin: auto;
-
     padding: 35px 22px 60px;
 }
 
-
-/* ========================================
-   HERO
-   ======================================== */
+/* HERO */
 
 .hero {
-    position: relative;
-
-    overflow: hidden;
-
     min-height: 390px;
 
     display: flex;
@@ -104,179 +75,62 @@ main {
 
     border-radius: 24px;
 
+    background: linear-gradient(
+        135deg,
+        #BFE3FF 0%,
+        #FFFFFF 48%,
+        #FFE6A7 100%
+    );
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+
     padding: 55px 25px;
-
-    isolation: isolate;
-
-    background:
-        linear-gradient(
-            120deg,
-            var(--hero-kleur-1, #e8f7ff),
-            var(--hero-kleur-2, #ffffff),
-            var(--hero-kleur-3, #fff4d6)
-        );
-
-    background-size: 200% 200%;
-
-    animation:
-        rustigeHeroKleuren
-        22s
-        ease-in-out
-        infinite;
-
-    box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.08);
-
-    transition:
-        background 5s ease-in-out;
 }
-
-
-/* De cover van de populairste strip
-   komt heel subtiel op de achtergrond */
-
-.hero::before {
-    content: "";
-
-    position: absolute;
-
-    inset: -35px;
-
-    z-index: -2;
-
-    background-image:
-        var(
-            --hero-cover,
-            none
-        );
-
-    background-size: cover;
-
-    background-position: center;
-
-    background-repeat: no-repeat;
-
-    filter:
-        blur(35px)
-        saturate(1.15);
-
-    opacity: 0.16;
-
-    transform: scale(1.08);
-
-    transition:
-        opacity 5s ease-in-out,
-        background-image 5s ease-in-out;
-}
-
-
-/* Witte transparante laag over de cover */
-
-.hero::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    z-index: -1;
-
-    border-radius: 24px;
-
-    background:
-        linear-gradient(
-            120deg,
-            rgba(255, 255, 255, 0.82),
-            rgba(255, 255, 255, 0.72),
-            rgba(255, 255, 255, 0.78)
-        );
-
-    pointer-events: none;
-}
-
-
-/* Langzame beweging */
-
-@keyframes rustigeHeroKleuren {
-
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
 
 .hero-tekst {
     max-width: 700px;
-
-    position: relative;
-
-    z-index: 2;
 }
-
 
 .badge {
     display: inline-block;
 
-    background: #e9f7ff;
-
-    color: #1687c5;
+    background: #E5F3FF;
+    color: #357CC4;
 
     padding: 8px 14px;
 
     border-radius: 50px;
 
     font-size: 13px;
-
     font-weight: bold;
 }
 
-
 .hero h1 {
     font-size: clamp(38px, 6vw, 64px);
-
     margin: 18px 0 12px;
+    color: #252A30;
 }
-
 
 .hero p {
     font-size: 19px;
-
-    color: #5b6470;
-
+    color: #58636E;
     line-height: 1.6;
 }
 
-
 .hero-knoppen {
     display: flex;
-
     justify-content: center;
-
     gap: 12px;
-
     flex-wrap: wrap;
-
     margin-top: 28px;
 }
 
-
-/* ========================================
-   KNOPPEN
-   ======================================== */
+/* KNOPPEN */
 
 .knop {
     display: inline-block;
 
-    background: #111318;
-
+    background: #4A90E2;
     color: white;
 
     padding: 12px 20px;
@@ -290,125 +144,100 @@ main {
     transition: 0.2s;
 }
 
-
 .knop:hover {
     transform: translateY(-2px);
-
-    box-shadow:
-        0 6px 15px rgba(0, 0, 0, 0.2);
+    background: #397FCF;
+    box-shadow: 0 6px 15px rgba(74, 144, 226, 0.25);
 }
-
 
 .knop-secundair {
     background: white;
-
-    color: #111318;
-
-    border: 1px solid #d7dce2;
+    color: #252A30;
+    border: 1px solid #D5E2EF;
 }
 
+.knop-secundair:hover {
+    background: #F0F7FF;
+}
 
-/* ========================================
-   POPULAIR
-   ======================================== */
+/* POPULAIR */
 
 .populair {
     margin-top: 55px;
 }
 
-
 .sectie-kop {
     display: flex;
-
     justify-content: space-between;
-
     align-items: end;
-
     gap: 20px;
 
     margin-bottom: 22px;
 }
 
-
 .klein-label {
-    color: #1687c5;
-
+    color: #4A90E2;
     font-size: 13px;
-
     font-weight: bold;
-
     letter-spacing: 1.5px;
 }
 
-
 .sectie-kop h2 {
     font-size: 34px;
-
     margin: 5px 0;
+    color: #252A30;
 }
 
-
 .sectie-kop p {
-    color: #69727d;
-
+    color: #68727D;
     margin: 0;
 }
 
-
 .alles-link {
-    color: #1687c5;
-
+    color: #4A90E2;
     text-decoration: none;
-
     font-weight: bold;
 }
 
+.alles-link:hover {
+    color: #357CC4;
+}
 
-/* ========================================
-   POPULAIRE KAARTEN
-   ======================================== */
+/* POPULAIRE KAARTEN */
 
 .populaire-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 22px;
 }
-
 
 .populaire-kaart {
     position: relative;
 
     display: flex;
-
     gap: 22px;
 
-    background: white;
+    background: #FFFFFF;
 
     padding: 18px;
 
     border-radius: 20px;
 
-    box-shadow:
-        0 8px 28px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 8px 28px rgba(37, 42, 48, 0.07);
 
     transition: 0.2s;
 }
 
-
 .populaire-kaart:hover {
     transform: translateY(-4px);
 
-    box-shadow:
-        0 14px 35px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 14px 35px rgba(37, 42, 48, 0.12);
 }
-
 
 .populaire-cover {
     width: 190px;
-
     height: 190px;
 
     object-fit: cover;
@@ -416,49 +245,34 @@ main {
     border-radius: 15px;
 }
 
-
 .populaire-info {
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
 }
 
-
 .populaire-info h3 {
     font-size: 25px;
-
     margin: 8px 0;
+
+    color: #252A30;
 }
 
-
 .populair-label {
-    color: #ef8b00;
-
+    color: #F08A24;
     font-size: 13px;
-
     font-weight: bold;
 }
 
-
-/* Likes worden niet meer
-   weergegeven in populaire kaarten */
-
-.populaire-info .likes {
-    display: none;
-}
-
+/* RANG NUMMER */
 
 .populair-nummer {
     position: absolute;
 
     top: 13px;
-
     left: 13px;
 
-    background: #111318;
-
+    background: #4A90E2;
     color: white;
 
     padding: 6px 10px;
@@ -470,14 +284,11 @@ main {
     z-index: 2;
 }
 
-
-/* ========================================
-   LADEN
-   ======================================== */
+/* LADEN */
 
 .laden-kaart,
 .geen-strips {
-    background: white;
+    background: #FFFFFF;
 
     border-radius: 18px;
 
@@ -486,39 +297,27 @@ main {
     text-align: center;
 }
 
-
 .spinner {
     width: 30px;
-
     height: 30px;
 
-    border: 4px solid #ddd;
-
-    border-top-color: #1687c5;
+    border: 4px solid #DDEAF6;
+    border-top-color: #4A90E2;
 
     border-radius: 50%;
 
-    animation:
-        draaien
-        0.8s
-        linear
-        infinite;
+    animation: draaien 0.8s linear infinite;
 
     margin: auto;
 }
 
-
 @keyframes draaien {
-
     to {
         transform: rotate(360deg);
     }
 }
 
-
-/* ========================================
-   FORMULIEREN
-   ======================================== */
+/* FORMULIEREN */
 
 input,
 textarea {
@@ -530,16 +329,24 @@ textarea {
 
     border-radius: 8px;
 
-    border: 1px solid #ccc;
+    border: 1px solid #D5E2EF;
+
+    background: #FFFFFF;
+
+    color: #252A30;
 }
 
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #4A90E2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.12);
+}
 
-/* ========================================
-   STRIPS
-   ======================================== */
+/* STRIPS */
 
 .strip-kaart {
-    background: white;
+    background: #FFFFFF;
 
     padding: 20px;
 
@@ -547,26 +354,19 @@ textarea {
 
     margin: 15px 0;
 
-    box-shadow:
-        0 5px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 20px rgba(37, 42, 48, 0.05);
 }
-
 
 .strip-kaart img {
     max-width: 250px;
-
     border-radius: 12px;
 }
-
 
 img {
     max-width: 100%;
 }
 
-
-/* ========================================
-   FOOTER
-   ======================================== */
+/* FOOTER */
 
 footer {
     margin-top: 40px;
@@ -575,76 +375,53 @@ footer {
 
     text-align: center;
 
-    background: #101318;
+    background: #252A30;
 
     color: white;
 }
 
-
 footer p {
-    color: #aeb6c0;
+    color: #B9C2CB;
 }
 
-
-/* ========================================
-   MOBIEL
-   ======================================== */
+/* MOBIEL */
 
 @media (max-width: 750px) {
 
     header {
         padding: 10px 15px;
-
         flex-direction: column;
-
         gap: 10px;
     }
 
-
     nav {
         flex-wrap: wrap;
-
         justify-content: center;
     }
-
 
     .logo-afbeelding {
         height: 50px;
     }
 
-
     .populaire-grid {
         grid-template-columns: 1fr;
     }
-
 
     .populaire-kaart {
         flex-direction: column;
     }
 
-
     .populaire-cover {
         width: 100%;
-
         height: 230px;
     }
 
-
     .sectie-kop {
         align-items: flex-start;
-
         flex-direction: column;
     }
 
-
     .hero {
         min-height: 330px;
-
-        padding: 40px 20px;
-    }
-
-
-    .hero h1 {
-        font-size: 42px;
     }
 }
