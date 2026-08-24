@@ -9,131 +9,94 @@ import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
+const lijst = document.getElementById("strip-lijst");
 
-
-const lijst =
-document.getElementById("strip-lijst");
-
-
-
-async function laadStrips(){
-
+async function laadStrips() {
 
     try {
 
-
-        const snapshot =
-        await get(
+        const snapshot = await get(
             ref(database, "strips")
         );
 
+        if (!snapshot.exists()) {
 
-
-        if(!snapshot.exists()){
-
-
-            lijst.innerHTML =
-            `
-            <p>
-            Nog geen strips gevonden.
-            </p>
+            lijst.innerHTML = `
+                <p>Nog geen strips gevonden.</p>
             `;
 
-
             return;
-
         }
-
-
 
         lijst.innerHTML = "";
 
-
-
-        const strips =
-        snapshot.val();
-
-
+        const strips = snapshot.val();
 
         Object.entries(strips)
-        .reverse()
-        .forEach(
-            ([id, strip]) => {
+            .reverse()
+            .forEach(([id, strip]) => {
 
+                const kaart =
+                    document.createElement("div");
 
+                kaart.className = "strip-kaart";
 
-            const kaart =
-            document.createElement("div");
+                // JUISTE plek van de likes
+                const likesRef = ref(
+                    database,
+                    `strips/${id}/strips/${id}/likes`
+                );
 
+                get(likesRef).then((likesSnapshot) => {
 
-            kaart.className =
-            "strip-kaart";
+                    const likes = likesSnapshot.exists()
+                        ? likesSnapshot.val()
+                        : {};
 
+                    const aantalLikes =
+                        Object.keys(likes).length;
 
+                    kaart.innerHTML = `
+                        <img
+                            src="${strip.cover || ''}"
+                            alt="Cover"
+                        >
 
-            kaart.innerHTML = `
+                        <h2>
+                            ${strip.titel || "Zonder titel"}
+                        </h2>
 
-                <img 
-                src="${strip.cover || ''}"
-                alt="Cover">
+                        <p>
+                            ❤️ ${aantalLikes}
+                            ${aantalLikes === 1 ? "like" : "likes"}
+                        </p>
 
+                        <a
+                            class="knop"
+                            href="lezen.html?id=${id}"
+                        >
+                            📖 Lezen
+                        </a>
+                    `;
 
-                <h2>
-                ${strip.titel || "Zonder titel"}
-                </h2>
+                    lijst.appendChild(kaart);
 
+                });
 
-                <p>
-                ❤️ ${
-                    strip.likes
-                    ? Object.keys(strip.likes).length
-                    : 0
-                }
-                likes
-                </p>
+            });
 
-
-                <a class="knop"
-                href="lezen.html?id=${id}">
-                📖 Lezen
-                </a>
-
-            `;
-
-
-
-            lijst.appendChild(kaart);
-
-
-
-        });
-
-
-
-    }
-    catch(fout){
-
+    } catch (fout) {
 
         console.error(
             "Firebase fout:",
             fout
         );
 
-
-        lijst.innerHTML =
-        `
-        <p>
-        ❌ Strips laden mislukt.
-        </p>
+        lijst.innerHTML = `
+            <p>❌ Strips laden mislukt.</p>
         `;
-
-
     }
-
-
 }
-
-
 
 onAuthStateChanged(
     auth,
@@ -148,6 +111,5 @@ onAuthStateChanged(
         }
 
         laadStrips();
-
     }
 );
