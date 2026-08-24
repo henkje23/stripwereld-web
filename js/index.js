@@ -31,86 +31,119 @@ async function laadPopulaireStrips() {
         }
 
 
-        const strips = Object.entries(snapshot.val())
-            .map(([id, strip]) => {
+        const strips = Object.entries(snapshot.val());
 
-                const likes = strip.likes
-                    ? Object.keys(strip.likes).length
-                    : 0;
 
-                return {
-                    id,
-                    ...strip,
-                    likesAantal: likes
-                };
+        const stripsMetLikes = await Promise.all(
 
-            })
-            .sort((a, b) => b.likesAantal - a.likesAantal)
-            .slice(0, 2);
+            strips.map(
+                async ([id, strip]) => {
+
+                    const likesSnapshot = await get(
+                        ref(database, `strips/${id}/likes`)
+                    );
+
+
+                    const likesAantal =
+                        likesSnapshot.exists()
+                            ? likesSnapshot.numChildren()
+                            : 0;
+
+
+                    return {
+                        id,
+                        ...strip,
+                        likesAantal
+                    };
+
+                }
+            )
+
+        );
+
+
+        const populaireStrips =
+            stripsMetLikes
+                .sort(
+                    (a, b) =>
+                        b.likesAantal - a.likesAantal
+                )
+                .slice(0, 2);
 
 
         lijst.innerHTML = "";
 
 
-        strips.forEach((strip, index) => {
+        populaireStrips.forEach(
+            (strip, index) => {
 
-            const kaart = document.createElement("article");
+                const kaart =
+                    document.createElement("article");
 
-            kaart.className = "populaire-kaart";
+
+                kaart.className =
+                    "populaire-kaart";
 
 
-            kaart.innerHTML = `
+                kaart.innerHTML = `
 
-                <div class="populair-nummer">
-                    #${index + 1}
-                </div>
+                    <div class="populair-nummer">
+                        #${index + 1}
+                    </div>
 
-                <img
-                    src="${strip.cover || ""}"
-                    alt="Cover van ${strip.titel || "strip"}"
-                    class="populaire-cover"
-                >
-
-                <div class="populaire-info">
-
-                    <span class="populair-label">
-                        🔥 Populair
-                    </span>
-
-                    <h3>
-                        ${strip.titel || "Zonder titel"}
-                    </h3>
-
-                    <p class="likes">
-                        ❤️ ${strip.likesAantal} likes
-                    </p>
-
-                    <a
-                        class="knop"
-                        href="pages/lezen.html?id=${strip.id}"
+                    <img
+                        src="${strip.cover || ""}"
+                        alt="Cover van ${strip.titel || "strip"}"
+                        class="populaire-cover"
                     >
-                        📖 Lezen
-                    </a>
 
-                </div>
+                    <div class="populaire-info">
 
-            `;
+                        <span class="populair-label">
+                            🔥 Populair
+                        </span>
+
+                        <h3>
+                            ${strip.titel || "Zonder titel"}
+                        </h3>
+
+                        <p class="likes">
+                            ❤️ ${strip.likesAantal}
+                            ${strip.likesAantal === 1 ? "like" : "likes"}
+                        </p>
+
+                        <a
+                            class="knop"
+                            href="pages/lezen.html?id=${encodeURIComponent(strip.id)}"
+                        >
+                            📖 Lezen
+                        </a>
+
+                    </div>
+
+                `;
 
 
-            lijst.appendChild(kaart);
+                lijst.appendChild(kaart);
 
-        });
+            }
+        );
 
-    }
 
-    catch (fout) {
+    } catch (fout) {
 
-        console.error("Firebase fout:", fout);
+        console.error(
+            "Firebase fout:",
+            fout
+        );
+
 
         lijst.innerHTML = `
             <div class="geen-strips">
                 <h3>⚠️ Oeps!</h3>
-                <p>De populaire strips konden niet geladen worden.</p>
+                <p>
+                    De populaire strips konden niet geladen worden.
+                </p>
             </div>
         `;
 
