@@ -3,12 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Zoeken - StripWereld</title>
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+    <script src="../theme.js"></script>
 </head>
+
 
 <body>
 
@@ -22,11 +31,25 @@
         >
     </a>
 
+
     <nav>
-        <a href="../index.html">Home</a>
-        <a href="alle-strips.html">Alle strips</a>
-        <a href="zoeken.html">Zoeken</a>
-        <a href="profiel.html">👤 Profiel</a>
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="alle-strips.html">
+            Alle strips
+        </a>
+
+        <a href="zoeken.html">
+            Zoeken
+        </a>
+
+        <a href="profiel.html">
+            👤 Profiel
+        </a>
+
     </nav>
 
 </header>
@@ -34,84 +57,39 @@
 
 <main>
 
-    <section class="hero">
-
-        <div class="hero-tekst">
-
-            <span class="badge">
-                🔍 STRIPWERELD
-            </span>
-
-            <h1>
-                Zoeken
-            </h1>
-
-            <p>
-                Zoek naar je favoriete strips.
-            </p>
-
-        </div>
-
-    </section>
+    <h1>
+        🔍 Zoeken
+    </h1>
 
 
-    <section class="populair">
+    <div class="profiel-kaart">
 
-        <div class="sectie-kop">
+        <input
+            type="text"
+            id="zoekveld"
+            placeholder="Zoek een strip..."
+            autocomplete="off"
+        >
 
-            <div>
-
-                <span class="klein-label">
-                    ZOEKEN
-                </span>
-
-                <h2>
-                    🔍 Zoek een strip
-                </h2>
-
-                <p>
-                    Typ de naam van een strip om te zoeken.
-                </p>
-
-            </div>
-
-        </div>
+    </div>
 
 
-        <div class="profiel-kaart">
+    <div id="zoek-resultaten">
 
-            <input
-                type="text"
-                id="zoekveld"
-                placeholder="🔍 Zoek een strip..."
-                autocomplete="off"
-            >
+        <p>
+            Vul hierboven een zoekterm in.
+        </p>
 
-        </div>
-
-
-        <div id="zoek-resultaten">
-
-            <div class="laden-kaart">
-
-                <div class="spinner"></div>
-
-                <p>
-                    Strips laden...
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
+    </div>
 
 </main>
 
 
 <footer>
 
-    <strong>📚 StripWereld</strong>
+    <strong>
+        📚 StripWereld
+    </strong>
 
     <p>
         Lees • Ontdek • Geniet
@@ -124,7 +102,11 @@
 </footer>
 
 
-<script type="module" src="../js/zoeken.js"></script>
+<script
+    type="module"
+    src="../js/zoeken.js">
+</script>
 
 </body>
+
 </html>
