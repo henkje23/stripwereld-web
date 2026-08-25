@@ -10,52 +10,109 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-    <script src="../theme.js"></script>
-    
 <body>
 
 <header>
 
     <a href="../index.html" class="logo">
-    <img src="../logo.jpeg" alt="StripWereld" class="logo-afbeelding">
-</a>
+        <img
+            src="../logo.jpeg"
+            alt="StripWereld"
+            class="logo-afbeelding"
+        >
+    </a>
 
     <nav>
-
-        <a href="../index.html">
-            Home
-        </a>
-
-        <a href="alle-strips.html">
-            Alle strips
-        </a>
-
-        <a href="zoeken.html">
-            Zoeken
-        </a>
-
+        <a href="../index.html">Home</a>
+        <a href="alle-strips.html">Alle strips</a>
+        <a href="zoeken.html">Zoeken</a>
+        <a href="profiel.html">👤 Profiel</a>
     </nav>
 
 </header>
 
+
 <main>
 
-    <h1>
-        📚 Alle strips
-    </h1>
+    <section class="hero">
 
-    <div id="strip-lijst">
-        Laden...
-    </div>
+        <div class="hero-tekst">
+
+            <span class="badge">
+                📚 STRIPWERELD
+            </span>
+
+            <h1>
+                Alle strips
+            </h1>
+
+            <p>
+                Ontdek alle strips die op StripWereld staan.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="populair">
+
+        <div class="sectie-kop">
+
+            <div>
+
+                <span class="klein-label">
+                    BIBLIOTHEEK
+                </span>
+
+                <h2>
+                    📚 Alle strips
+                </h2>
+
+                <p>
+                    Bekijk alle beschikbare strips.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div id="alle-strips-lijst">
+
+            <div class="laden-kaart">
+
+                <div class="spinner"></div>
+
+                <p>
+                    Strips laden...
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </main>
 
+
 <footer>
-    © 2026 StripWereld
+
+    <strong>📚 StripWereld</strong>
+
+    <p>
+        Lees • Ontdek • Geniet
+    </p>
+
+    <small>
+        © 2026 StripWereld
+    </small>
+
 </footer>
+
 
 <script type="module" src="../js/alle-strips.js"></script>
 
 </body>
-
 </html>
