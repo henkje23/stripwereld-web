@@ -3,151 +3,83 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Profiel - StripWereld</title>
 
-    <link
-        rel="stylesheet"
-        href="../css/style.css"
-    >
+    <link rel="stylesheet" href="../css/style.css">
 
     <style>
-        /* PROFIEL */
-
         .profiel-kaart {
-            background: white;
+            background: #ffffff;
             padding: 25px;
             border-radius: 20px;
             margin: 18px 0;
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+            box-shadow: 0 8px 28px rgba(37, 42, 48, 0.08);
         }
 
         .profiel-kaart h3 {
             margin-top: 0;
             font-size: 22px;
+            color: #252A30;
         }
 
-        .contact-knoppen,
-        .taal-knoppen {
+        .contact-knoppen {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
             margin-top: 18px;
         }
 
-        .taal-knop.actief {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.18);
+        .contact-knoppen .knop {
+            text-align: center;
         }
 
-        /* Nederlandse stijl */
-        body.taal-nl .knop {
-            background: #4A90E2;
-        }
-
-        body.taal-nl .knop-secundair {
-            background: white;
-            color: #17202a;
-        }
-
-        /* Engelse stijl */
-        body.taal-en .knop {
-            background: #7B61C9;
-        }
-
-        body.taal-en .knop-secundair {
-            background: white;
-            color: #17202a;
-        }
-
-        /* Franse stijl */
-        body.taal-fr .knop {
-            background: #E76F51;
-        }
-
-        body.taal-fr .knop-secundair {
-            background: white;
-            color: #17202a;
-        }
-
-        /* Mobiel */
         @media (max-width: 750px) {
-
-            .contact-knoppen,
-            .taal-knoppen {
+            .contact-knoppen {
                 flex-direction: column;
             }
 
-            .contact-knoppen .knop,
-            .taal-knoppen .knop {
+            .contact-knoppen .knop {
                 width: 100%;
-                text-align: center;
             }
-
         }
     </style>
-
 </head>
 
-
-<body class="taal-nl">
-
+<body>
 
 <header>
 
     <a href="../index.html" class="logo">
-
         <img
-            src="../images/logo.jpeg"
+            src="../logo.jpeg"
             alt="StripWereld"
             class="logo-afbeelding"
         >
-
     </a>
 
-
     <nav>
-
-        <a href="../index.html" data-i18n="home">
-            Home
-        </a>
-
-        <a href="alle-strips.html" data-i18n="alleStrips">
-            Alle strips
-        </a>
-
-        <a href="zoeken.html" data-i18n="zoeken">
-            Zoeken
-        </a>
-
-        <a href="profiel.html" data-i18n="profielNav">
-            👤 Profiel
-        </a>
-
+        <a href="../index.html">Home</a>
+        <a href="alle-strips.html">Alle strips</a>
+        <a href="zoeken.html">Zoeken</a>
+        <a href="profiel.html">👤 Profiel</a>
     </nav>
 
 </header>
 
 
-
 <main>
-
-    <!-- HERO -->
 
     <section class="hero">
 
         <div class="hero-tekst">
 
-            <span class="badge" data-i18n="badge">
+            <span class="badge">
                 👤 Mijn profiel
             </span>
 
-            <h1 data-i18n="profielTitel">
+            <h1>
                 Profiel
             </h1>
 
@@ -160,27 +92,21 @@
     </section>
 
 
-
-    <!-- ACCOUNT -->
-
     <section class="populair">
 
         <div class="sectie-kop">
 
             <div>
 
-                <span
-                    class="klein-label"
-                    data-i18n="accountLabel"
-                >
+                <span class="klein-label">
                     ACCOUNT
                 </span>
 
-                <h2 data-i18n="accountTitel">
+                <h2>
                     Mijn account
                 </h2>
 
-                <p data-i18n="accountUitleg">
+                <p>
                     Beheer je StripWereld-account.
                 </p>
 
@@ -189,10 +115,9 @@
         </div>
 
 
-
         <div class="profiel-kaart">
 
-            <h3 data-i18n="account">
+            <h3>
                 👤 Account
             </h3>
 
@@ -204,7 +129,6 @@
                 id="uitloggen-knop"
                 class="knop"
                 type="button"
-                data-i18n="uitloggen"
             >
                 🚪 Uitloggen
             </button>
@@ -212,16 +136,13 @@
         </div>
 
 
-
-        <!-- APP -->
-
         <div class="profiel-kaart">
 
-            <h3 data-i18n="appTitel">
+            <h3>
                 📱 StripWereld-app
             </h3>
 
-            <p data-i18n="appUitleg">
+            <p>
                 Download de nieuwste versie van de StripWereld-app.
             </p>
 
@@ -230,7 +151,6 @@
                 href="https://github.com/henkje23/stripwereld/releases/latest"
                 target="_blank"
                 rel="noopener"
-                data-i18n="download"
             >
                 📥 Download app (APK)
             </a>
@@ -238,102 +158,45 @@
         </div>
 
 
-
-        <!-- CONTACT -->
-
         <div class="profiel-kaart">
 
-            <h3 data-i18n="contactTitel">
+            <h3>
                 💬 Contact
             </h3>
 
-            <p data-i18n="contactUitleg">
+            <p>
                 Heb je een vraag, idee of iets anders?
-                Neem contact met ons op via WhatsApp.
+                Neem contact met mij op via WhatsApp.
             </p>
-
 
             <div class="contact-knoppen">
 
                 <a
                     class="knop"
-                    href="https://wa.me/32469629062?text=Ik%20heb%20een%20vraag:"
+                    href="https://wa.me/32469629062?text=Ik%20heb%20een%20vraag"
                     target="_blank"
                     rel="noopener"
-                    data-i18n="vraag"
                 >
                     ❓ Ik heb een vraag
                 </a>
 
-
                 <a
                     class="knop"
-                    href="https://wa.me/32469629062?text=Ik%20heb%20een%20idee:"
+                    href="https://wa.me/32469629062?text=Ik%20heb%20een%20idee"
                     target="_blank"
                     rel="noopener"
-                    data-i18n="idee"
                 >
                     💡 Ik heb een idee
                 </a>
 
-
                 <a
                     class="knop knop-secundair"
-                    href="https://wa.me/32469629062?text="
+                    href="https://wa.me/32469629062"
                     target="_blank"
                     rel="noopener"
-                    data-i18n="anders"
                 >
                     📝 Anders
                 </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- TAAL -->
-
-        <div class="profiel-kaart">
-
-            <h3 data-i18n="taalTitel">
-                🌍 Taal
-            </h3>
-
-            <p data-i18n="taalUitleg">
-                Kies de taal van de StripWereld-interface.
-                De strips zelf worden niet vertaald.
-            </p>
-
-
-            <div class="taal-knoppen">
-
-                <button
-                    class="knop taal-knop"
-                    data-taal="nl"
-                    type="button"
-                >
-                    🇳🇱 Nederlands
-                </button>
-
-
-                <button
-                    class="knop knop-secundair taal-knop"
-                    data-taal="en"
-                    type="button"
-                >
-                    🇬🇧 English
-                </button>
-
-
-                <button
-                    class="knop knop-secundair taal-knop"
-                    data-taal="fr"
-                    type="button"
-                >
-                    🇫🇷 Français
-                </button>
 
             </div>
 
@@ -344,25 +207,22 @@
 </main>
 
 
-
 <footer>
 
-    <p data-i18n="footer">
-        © 2026 StripWereld
+    <strong>📚 StripWereld</strong>
+
+    <p>
+        Lees • Ontdek • Geniet
     </p>
+
+    <small>
+        © 2026 StripWereld
+    </small>
 
 </footer>
 
 
-
-<script
-    type="module"
-    src="../js/profiel.js"
-></script>
-
-    <script src="../theme.js"></script>
 <script type="module" src="../js/profiel.js"></script>
 
 </body>
-
 </html>
