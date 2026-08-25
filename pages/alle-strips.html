@@ -8,6 +8,8 @@
     <title>Alle strips - StripWereld</title>
 
     <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../theme.js"></script>
 </head>
 
 <body>
@@ -23,10 +25,23 @@
     </a>
 
     <nav>
-        <a href="../index.html">Home</a>
-        <a href="alle-strips.html">Alle strips</a>
-        <a href="zoeken.html">Zoeken</a>
-        <a href="profiel.html">👤 Profiel</a>
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="alle-strips.html">
+            Alle strips
+        </a>
+
+        <a href="zoeken.html">
+            Zoeken
+        </a>
+
+        <a href="profiel.html">
+            👤 Profiel
+        </a>
+
     </nav>
 
 </header>
@@ -34,72 +49,30 @@
 
 <main>
 
-    <section class="hero">
+    <h1>
+        📚 Alle strips
+    </h1>
 
-        <div class="hero-tekst">
+    <div id="strip-lijst">
 
-            <span class="badge">
-                📚 STRIPWERELD
-            </span>
-
-            <h1>
-                Alle strips
-            </h1>
+        <div class="laden-kaart">
+            <div class="spinner"></div>
 
             <p>
-                Ontdek alle strips die op StripWereld staan.
+                Strips laden...
             </p>
-
         </div>
 
-    </section>
-
-
-    <section class="populair">
-
-        <div class="sectie-kop">
-
-            <div>
-
-                <span class="klein-label">
-                    BIBLIOTHEEK
-                </span>
-
-                <h2>
-                    📚 Alle strips
-                </h2>
-
-                <p>
-                    Bekijk alle beschikbare strips.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div id="alle-strips-lijst">
-
-            <div class="laden-kaart">
-
-                <div class="spinner"></div>
-
-                <p>
-                    Strips laden...
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
+    </div>
 
 </main>
 
 
 <footer>
 
-    <strong>📚 StripWereld</strong>
+    <strong>
+        📚 StripWereld
+    </strong>
 
     <p>
         Lees • Ontdek • Geniet
@@ -112,7 +85,11 @@
 </footer>
 
 
-<script type="module" src="../js/alle-strips.js"></script>
+<script
+    type="module"
+    src="../js/alle-strips.js">
+</script>
 
 </body>
+
 </html>
