@@ -2,76 +2,129 @@
 <html lang="nl">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Zoeken - StripWereld</title>
 
     <link rel="stylesheet" href="../css/style.css">
-
 </head>
-
-    <script src="../theme.js"></script>
 
 <body>
 
 <header>
 
     <a href="../index.html" class="logo">
-    <img src="../logo.jpeg" alt="StripWereld" class="logo-afbeelding">
-</a>
+        <img
+            src="../logo.jpeg"
+            alt="StripWereld"
+            class="logo-afbeelding"
+        >
+    </a>
 
     <nav>
-
-        <a href="../index.html">
-            Home
-        </a>
-
-        <a href="alle-strips.html">
-            Alle strips
-        </a>
-
-        <a href="zoeken.html">
-            Zoeken
-        </a>
-
+        <a href="../index.html">Home</a>
+        <a href="alle-strips.html">Alle strips</a>
+        <a href="zoeken.html">Zoeken</a>
+        <a href="profiel.html">👤 Profiel</a>
     </nav>
 
 </header>
 
+
 <main>
 
-    <h1>
-        🔍 Zoeken
-    </h1>
+    <section class="hero">
 
-    <input
-        type="search"
-        id="zoekveld"
-        placeholder="Zoek een strip..."
-        autocomplete="off"
-    >
+        <div class="hero-tekst">
 
-    <div id="zoek-resultaten">
+            <span class="badge">
+                🔍 STRIPWERELD
+            </span>
 
-        Vul hierboven een zoekterm in.
+            <h1>
+                Zoeken
+            </h1>
 
-    </div>
+            <p>
+                Zoek naar je favoriete strips.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="populair">
+
+        <div class="sectie-kop">
+
+            <div>
+
+                <span class="klein-label">
+                    ZOEKEN
+                </span>
+
+                <h2>
+                    🔍 Zoek een strip
+                </h2>
+
+                <p>
+                    Typ de naam van een strip om te zoeken.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profiel-kaart">
+
+            <input
+                type="text"
+                id="zoekveld"
+                placeholder="🔍 Zoek een strip..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div id="zoek-resultaten">
+
+            <div class="laden-kaart">
+
+                <div class="spinner"></div>
+
+                <p>
+                    Strips laden...
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </main>
 
+
 <footer>
 
-    © 2026 StripWereld
+    <strong>📚 StripWereld</strong>
+
+    <p>
+        Lees • Ontdek • Geniet
+    </p>
+
+    <small>
+        © 2026 StripWereld
+    </small>
 
 </footer>
 
-<script
-    type="module"
-    src="../js/zoeken.js">
-</script>
+
+<script type="module" src="../js/zoeken.js"></script>
 
 </body>
-
 </html>
